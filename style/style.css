@@ -1,0 +1,88 @@
+html, body, h1, form, fieldset, legend, ol, li {
+margin: 0;
+padding: 0;
+}
+
+
+div {
+ outline:0px solid red;
+}
+
+body {
+ padding: 0;
+ margin:0;
+ border-top: 30px solid #87A96B;
+}
+
+#outer_wrap {
+   border-top: 260px solid #dedede;
+}
+
+ul {
+ padding:0;
+ margin:0;
+ list-style-type: none;
+ font-weight: bold;
+}
+
+#leftmenu_frame ul {
+  margin-left: 10px;
+}
+
+ 
+ #masthead_wrap ul {
+  padding-bottom: 20px;
+   padding-top: 10px;
+  margin-left: 10px;
+ }
+ 
+#masthead_wrap ul li {
+  display: inline;
+  margin-right: 25px;
+ 
+}
+
+
+
+
+
+#page_wrap {
+   width: 980px;
+   margin-left:auto;
+   margin-right:auto;
+   margin-top:0;
+   outline: 6px solid gray;
+   margin-top: -220px;
+  background-color: #fff;
+}
+
+#content_frame {
+  overflow: auto;
+}
+
+#leftmenu_frame {
+ width: 100px;
+ border-right: 0px solid blue;
+ float: left;
+ background-color: #FF;
+}
+
+#mastercontent_wrap {
+  width: 880px;
+ 
+  float: left;
+ /**  background-color: lightBlue; **/
+   overflow: auto;
+
+}
+
+
+#innermaster_wrap {
+  width: 380px;
+  float: left;
+}
+
+#innerdetail_wrap {
+  width: 500px;
+   float: left;
+}
