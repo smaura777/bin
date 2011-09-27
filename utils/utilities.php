@@ -33,6 +33,38 @@ function logout(){
    $_SESSION = array();
    session_destroy();
 } 
+
+
+
+
+function procesPost($body,$tags) {
+	$tag_included = FALSE;
+	 
+	if (!isset($_POST[$body]) ){
+  	   throw new Exception("Post body not set");
+     }
+     
+    if (empty($_POST[$body])){
+     	throw new Exception("Post body is empty");
+    }
+     
+     $body_val = trim($_POST[$body]);
+     
+     if (isset($_POST[$tags]) ){
+       if (!empty($_POST[$tags]) ){
+       	$tag_included = TRUE;
+       	$tag_val = trim($_POST[$tags]);
+       }
+     }
+     
+     $postManager = new PostManager();
+     if ($tag_included == TRUE){
+     //	$tagManager = new TagManager();
+     }
+   return 0;     
+}
+
+
  
 function processRegistrationRequest($user,$password,$first,$last){
   $err = '';
@@ -91,8 +123,11 @@ function processRegistrationRequest($user,$password,$first,$last){
   
   // Create if not exist
   $manager = new AccountManager();
-  
+  try {
   $response = $manager->create($_POST[$user],$_POST[$password],$fname,$lname);  
+  }catch (Exception $e){
+  	die($e->getMessage());
+  }
   
   if ($response != TRUE){
     $err = $manager->lastErrorString;
@@ -149,7 +184,11 @@ function processLoginRequest($user,$password){
    
    // Login 
    $manager = new AccountManager();
+   try {
    $response = $manager->authenticate($_POST[$user],$_POST[$password]);
+   } catch(Exception $e){
+   	   die("<p>".$e->getMessage() ."</p>");
+   }
    if ($response ==  null || $response ==  false){
      $err = $manager->lastErrorString;
      // Save error in db
@@ -168,6 +207,8 @@ function processLoginRequest($user,$password){
    return $err;
  }
 
+ 
+ 
 
 function session_start_wrap(){
   session_start();

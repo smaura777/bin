@@ -74,7 +74,7 @@ else {
     </div>
     <!-- frm wrapper start -->
     <div class="frm_wrapper">
-      <form enctype="application/x-www-form-urlencoded">
+      <form id="createnote_frm" enctype="application/x-www-form-urlencoded" method="POST" action="notes/?q=add">
       <div class="frm_input">
         <textarea class="note_body" rows='10' cols='80' name="note_body" placeholder="Enter a note here" required autofocus></textarea>
       </div>
@@ -97,7 +97,7 @@ else {
     </div>
     <!-- frm wrapper end -->
     <div class="frm_button">
-      <button class="left_b">clear</button> <button class="right_b">save</button>
+      <button  id="postclear_bt" class="left_b">clear</button> <button id="postsave_bt" class="right_b">save</button>
     </div>  
   </div>
   <!-- dialog end -->

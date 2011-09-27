@@ -74,7 +74,7 @@ class TableModel {
 	  	throw new Exception("Limit is not an integer");
 	  }
 	  
-	  $this->queryOp = "SELECT  {$row->toColumnList()} FROM {$this->tableName} WHERE {$row->toConstraints()}";
+	  $this->queryOp = "SELECT  {$row->toColumnList()} FROM {$this->tableName}  {$row->toConstraints()}";
 	  
 	  
 	  if ($limit > 0){
@@ -84,7 +84,7 @@ class TableModel {
 	  if (!empty($options)){
 	  	$this->queryOp .= " {$options} ";
 	  }
-	  
+	  echo "<p>".$this->queryOp."</p>";
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
 	  	throw new Exception("Select error ");

@@ -9,7 +9,7 @@ class AccountManager {
   function create($name,$pass,$fname=NULL,$lname=NULL){
     if ($this->userExist($name)){
       $this->lastErrorString = "Username taken already - pick another one"; 
-      return false;
+      throw new Exception("Username taken already - pick another one");
     }
 
     $hasher = new PasswordHash(8, FALSE);
@@ -26,8 +26,8 @@ class AccountManager {
       $rowmodel->set("status","'active'");
       $rowmodel->set("fname","'".$fname."'");
       $rowmodel->set("lname","'".$lname."'");
-      echo "<p> ".$rowmodel->toColumnList()."</p>";
-      echo "<p> ".$rowmodel->toValues()."</p>";
+     // echo "<p> ".$rowmodel->toColumnList()."</p>";
+    //  echo "<p> ".$rowmodel->toValues()."</p>";
     //  die("Debug test");
       
       try {
@@ -44,8 +44,8 @@ class AccountManager {
     	$rowmodel->set("created_on","".time()."");
     	$rowmodel->set("last_modified","".time()."");
     	$rowmodel->set("status","'active'");
-    	echo "<p> ".$rowmodel->toColumnList()."</p>";
-    	echo "<p> ".$rowmodel->toValues()."</p>";
+    	//echo "<p> ".$rowmodel->toColumnList()."</p>";
+    	//echo "<p> ".$rowmodel->toValues()."</p>";
     	//die("Debug test");
     	
     	try {
@@ -61,23 +61,31 @@ class AccountManager {
   
   function authenticate($name,$pass){
      $hasher = new PasswordHash(8, FALSE);
-     $result = $this->_connection->query("SELECT uid,pass,user from accounts WHERE user = '".$name."' ");  
-      
-     if ($result == null){
-       $this->lastErrorString = __CLASS__. " : ".__LINE__ . " : Invalid query " . $this->_connection->error . ''; 
-       return null;
+     $rowmodel = new RowModel();
+     $tablemodel = new TableModel();
+     $tablemodel->tableName = "accounts";
+     $rowmodel->set("uid","'".$name."'");
+     $rowmodel->set("pass","");
+     $rowmodel->set("user","");
+     $rowmodel->setConstraint("user","'".$name."'");
+     
+     try {
+      $result = $tablemodel->fetch($rowmodel);	
+      // $result = $this->_connection->query("SELECT uid,pass,user from accounts WHERE user = '".$name."' ");  
+     } catch(Exception $e){
+     	die("{$e->getMessage()}");
      }
      
-     if ($result->num_rows <= 0){
-       $this->lastErrorString = __CLASS__. " : ".__LINE__ . " : invalid Username or Password "; 
-       return null;
+     if ($tablemodel->count() <= 0){
+       throw new Exception("invalid Username or Password");
      }
     
-     $row = $result->fetch_object();
-     if (!$hasher->CheckPassword($pass,$row->pass)){
-       $this->lastErrorString = __CLASS__. " : ".__LINE__ . " : invalid Username or Password "; 
-       return false;
+     //echo "<p> pass = "  . $result[0]->get("pass")->value .  "</p>";
+     if (!$hasher->CheckPassword($pass,$result[0]->get("pass")->value )){
+     	throw new Exception("invalid Username or Password 552");
      }
+     
+     
      
      $user_object = new User();
      $user_object->name = $row->user;
@@ -110,7 +118,7 @@ class AccountManager {
   	//echo "<br/> count = ". $tablemodel->fetchCount($rowmodel)."<br/>";
   	  $result = $tablemodel->fetchCount($rowmodel);
   	} catch(Exception $e){
-  		echo $e->getMessage();
+  	  die($e->getMessage());
   	}
     //$result = $this->_connection->query("SELECT * from accounts WHERE user ='".$name."'");
     if ($result > 0){

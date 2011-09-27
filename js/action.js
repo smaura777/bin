@@ -18,6 +18,12 @@
    });
    
    
+   // Note form
+   $("#postsave_bt").click(function(){
+	   //alert("Saving ....");
+	   $("#createnote_frm").submit();
+   });
+   
  })  
  
  

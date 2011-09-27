@@ -4,15 +4,7 @@ class PostManager {
     private $_connection;
     public $lastErrorString = "No errors";
    
-   public function __construct(){
-     $this->_connection = DatabaseConnection::Connect();
-     if ($this->_connection->error){
-       die("Connect error" . $this->_connection->error);
-     }
-     else {
-      // echo "Connection established";
-     }
-   }
+  
    
    public function create($title,$teaser,$body){
     if (issetAndNotEmpty($_SESSION['user_object'])){
