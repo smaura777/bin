@@ -88,8 +88,8 @@ class AccountManager {
      
      
      $user_object = new User();
-     $user_object->name = $row->user;
-     $user_object->id = $row->uid;
+     $user_object->name = $result[0]->get("user")->value;
+     $user_object->id = $result[0]->get("uid")->value;
      return $user_object;
   }
   

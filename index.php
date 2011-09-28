@@ -2,6 +2,7 @@
 ob_start();
 require_once 'init.php';
 session_start_wrap();
+  
 ?>
 <!DOCTYPE html>
 <head>
@@ -30,6 +31,7 @@ session_start_wrap();
  
 
 
+
 <?php
 
 if (isset($_SESSION['isLoggedIn']) && ($_SESSION['isLoggedIn'] == TRUE) ){
@@ -39,6 +41,7 @@ if (isset($_SESSION['isLoggedIn']) && ($_SESSION['isLoggedIn'] == TRUE) ){
   //echo "<div><h3>Welcome</h3></div>";
   // echo "<div><a href=\"logout.php\">logout</a></div>";  
   // echo "<div>Session_id : ".session_id()."</div>"; 
+  var_dump($_SESSION['user_object']);
 }
 else {
   include_once 'login.php';
@@ -74,12 +77,15 @@ else {
     </div>
     <!-- frm wrapper start -->
     <div class="frm_wrapper">
-      <form id="createnote_frm" enctype="application/x-www-form-urlencoded" method="POST" action="notes/?q=add">
+      <form id="createnote_frm" name="create_note" enctype="application/x-www-form-urlencoded" method="POST" action="notes/?q=add">
       <div class="frm_input">
-        <textarea class="note_body" rows='10' cols='80' name="note_body" placeholder="Enter a note here" required autofocus></textarea>
+       <input type="text" size="80" name="docname" value="">
+      </div>
+      <div class="frm_input">
+        <textarea class="note_body" id="note_body" rows='10' cols='80' name="note_body" placeholder="Enter a note here" required autofocus></textarea>
       </div>
       <div class="frm_input frm_textarea">  
-        <textarea class="note_tags" rows='2' cols='80' name="note_tags" placeholder="Enter tags here"></textarea>
+        <textarea class="note_tags" rows='2' cols='80' id="note_tags" name="note_tags" placeholder="Enter tags here"></textarea>
       </div>  
       
       <div class="frm_input frm_select">  

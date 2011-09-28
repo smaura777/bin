@@ -20,8 +20,18 @@
    
    // Note form
    $("#postsave_bt").click(function(){
-	   //alert("Saving ....");
-	   $("#createnote_frm").submit();
+	   param_obj = {};
+	   param_obj.note_body = document.create_note.note_body.value;
+	   param_obj.note_tags = document.create_note.note_tags.value;
+	   param_obj.docname = document.create_note.docname.value;
+	   
+	   //alert("Saving ...." + param_obj.note_body);
+	   //$("#createnote_frm").submit();
+	   try {
+	   $.post("notes/?q=add",param_obj,function(data){alert(data)});
+	   } catch(err){
+		   alert("Post error "+ err.description);
+	   }
    });
    
  })  

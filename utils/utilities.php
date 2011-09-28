@@ -37,9 +37,17 @@ function logout(){
 
 
 
-function procesPost($body,$tags) {
+function procesPost($doc_name,$body,$tags) {
 	$tag_included = FALSE;
-	 
+
+	if (!isset($_POST[$doc_name]) ){
+		throw new Exception("Document name not set");
+	}
+	
+	if (empty($_POST[$doc_name])){
+		throw new Exception("Document name is empty");
+	}
+	
 	if (!isset($_POST[$body]) ){
   	   throw new Exception("Post body not set");
      }
@@ -48,7 +56,9 @@ function procesPost($body,$tags) {
      	throw new Exception("Post body is empty");
     }
      
+     $doc_val = trim($_POST[$doc_name]);
      $body_val = trim($_POST[$body]);
+
      
      if (isset($_POST[$tags]) ){
        if (!empty($_POST[$tags]) ){
@@ -57,11 +67,32 @@ function procesPost($body,$tags) {
        }
      }
      
-     $postManager = new PostManager();
-     if ($tag_included == TRUE){
-     //	$tagManager = new TagManager();
+     $documentManager = new DocumentManager();
+     try {
+     $documentManager->create($doc_val);
+     } catch(Exception $e){
+       return array('status' => 'failure creating document','message'=> "".$e->getMessage()."" );	
      }
-   return 0;     
+     
+     // Adding note
+     
+     $postManager = new PostManager();
+     try {
+       $postManager->create($documentManager->getRecentID(), $body_val);
+     } catch(Exception $e){
+     	return array('status' => 'failure adding note','message'=> "".$e->getMessage()."" );
+     }
+     
+     if ($tag_included == TRUE){
+     	$tagManager = new TagManager();
+     	try {
+     	$tagManager->create($tag_val);
+     	} catch (Exception $e){
+     	  return  array('status' => 'Failure adding tag','message'=>"".$e->getMessage()."" );	
+     	}
+     	
+     }
+   return array('Status'=> 'Success','input' => array('body' => ''.$body_val.'','tags' => ''.$tag_val.''),'docid' => "". $documentManager->getRecentID() ."" );     
 }
 
 

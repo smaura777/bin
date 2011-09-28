@@ -1,69 +1,48 @@
 <?php
 
 class PostManager {
-    private $_connection;
-    public $lastErrorString = "No errors";
    
-  
-   
-   public function create($title,$teaser,$body){
-    if (issetAndNotEmpty($_SESSION['user_object'])){
-      $user_object =  $_SESSION['user_object'];
-      if (!isset($user_object->id)){
-        $this->lastErrorString = "User ID not found"; 
-        return false;
+   public function create($docid,$body){
+   	  
+      if (!isset($_SESSION['user_object'])){
+      	throw new Exception("User is not logged in");
       }
       
+      if (empty($_SESSION['user_object']->id)){
+      	throw new Exception("Missign user ID");
+      }
+       
+      $user_object = $_SESSION['user_object'];
       $unique = new UniqueIDFactory();
       $content_id = $unique->generateIDWithUnixTimestampComponent($user_object);
       if ($content_id == null){
-           $this->lastErrorString = $unique->lastErrorString;  
-        return false;
+      	throw new Exception("Could not generate unique ID");
       } 
           
-      //echo $content_id;
-      
-      $this->_connection->query("INSERT INTO post (tid,owner,content_type,status) values('".$content_id."','".$user_object->id."','post','PUBLIC')");
-      if ($this->_connection->error){
-        return false;
+      $rowmodel = new RowModel();
+      $tablemodel = new TableModel();
+      $tablemodel->tableName = "entry";
+      $rowmodel->set("docid","'". $docid . "'");
+      $rowmodel->set("entryid","'". $content_id . "'");
+      $rowmodel->set("entryteaser","'" . $body . "'");
+      $rowmodel->set("entrybody","'" . $body . "'");
+      $rowmodel->set("user_agent","'" . $_SERVER['HTTP_USER_AGENT'] . "'");
+      $rowmodel->set("created_on","" . time() . "");
+      $rowmodel->set("uid","'" . $_SESSION['user_object']->id . "'");
+      try {
+      	$tablemodel->add($rowmodel);
+      } catch(Exception $e){
+      	die("<p> ". $e->getMessage() . "</p>");
       }
       
-      $this->_connection->query("INSERT INTO post_data (tid,created_on,post_title,post_teaser,post_data) values('".$content_id."','".time()."','".$title."','".$teaser."','".$body."')");
-      if ($this->_connection->error){
-        return false;
-      }
-      
-      return true;  
-    }
-    else {
-      $this->lastErrorString = "User is not logged in";
-    }
-   
    }
   
-    public function display(){
-      $result = $this->_connection->query("select post_data.tid,post_data.vid,post_data.created_on,post_data.post_title,post_data.post_teaser from post_data,post  where post.tid = post_data.tid and post.status = 'PUBLIC'");
-      if ($this->_connection->error){
-        return false;
-      }
+    public function getNotes($docid){
       
-      $result_array = array(); 
-      while ($row = $result->fetch_assoc()){
-         $result_array[] = $row;
-      }
-      
-      return $result_array;    
     }
     
     
-    public function  displayPostDetails($post_id){
-      $result = $this->_connection->query("select post_data.tid,post_data.vid,post_data.created_on,post_data.post_title,post_data.post_data from post_data where post_data.tid = '".$post_id."' and post.status = 'PUBLIC'");
-      if ($this->_connection->error){
-        return false;
-      }
-      
-      return $result->fetch_assoc(); 
-    }
+    
     
     
 }
