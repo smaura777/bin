@@ -33,7 +33,7 @@ class TableModel {
 	  }
 	  
 	  $this->queryOp = "INSERT INTO {$this->tableName} ({$row->toColumnList()}) VALUES ({$row->toValues()}) ";
-	  echo "<p> query == ".$this->queryOp."</p>";
+	 // echo "<p> query == ".$this->queryOp."</p>";
 	  
 	  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
@@ -84,7 +84,7 @@ class TableModel {
 	  if (!empty($options)){
 	  	$this->queryOp .= " {$options} ";
 	  }
-	  echo "<p>".$this->queryOp."</p>";
+	  //echo "<p>".$this->queryOp."</p>";
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
 	  	throw new Exception("Select error ");
@@ -104,7 +104,7 @@ class TableModel {
 		
 	  $this->queryOp = "SELECT count(*) as total FROM {$this->tableName}  {$row->toConstraints()}";
 	  
-	  echo "<div>".$this->queryOp." </div>";
+	 // echo "<div>".$this->queryOp." </div>";
 	  
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){

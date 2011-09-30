@@ -2,6 +2,8 @@
 
 class PostManager {
    
+   private $recent_entryid; 	
+	
    public function create($docid,$body){
    	  
       if (!isset($_SESSION['user_object'])){
@@ -18,6 +20,8 @@ class PostManager {
       if ($content_id == null){
       	throw new Exception("Could not generate unique ID");
       } 
+      
+      $this->recent_entryid = $content_id;
           
       $rowmodel = new RowModel();
       $tablemodel = new TableModel();
@@ -37,8 +41,57 @@ class PostManager {
       
    }
   
-    public function getNotes($docid){
+    
+  public function recentEntryID(){
+  	if ($this->recent_entryid){
+  		return $this->recent_entryid;
+  	}
+  	else {
+  		throw new Exception("No recent entry ids");
+  	}
+  } 
+  
+  
+   public function getNote($entryid){
+   	$rowmodel = new RowModel();
+   	$rowmodel->set('docid');
+   	$rowmodel->set('entryid');
+   	$rowmodel->set('entrybody');
+   	$rowmodel->set('created_on');
+   	$rowmodel->setConstraint("entryid","'" . $entryid  . "'");
+   	
+   	$tablemodel = new TableModel();
+   	$tablemodel->tableName = "entry";
+   	
+   	try {
+   		$result = $tablemodel->fetch($rowmodel);
+   	} catch(Exception $e){
+   		throw $e;
+   	}
+   	
+   	return $result;
+   }
+  
+   
+   
+   
+    public function getRecentNotes($limit=50){
+      $rowmodel = new RowModel();
+      $rowmodel->set('docid');
+      $rowmodel->set('entryid');
+      $rowmodel->set('entrybody');
+      $rowmodel->set('created_on');
       
+      $tablemodel = new TableModel();
+      $tablemodel->tableName = "entry";
+      
+      try {
+      	$result = $tablemodel->fetch($rowmodel,$limit," ORDER by created_on desc ");
+      } catch(Exception $e){
+      	throw $e;
+      }
+      
+      return $result;
     }
     
     

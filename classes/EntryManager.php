@@ -94,8 +94,8 @@ function update($entryid,$entryteaser,$entrybody){
 }
 
 
-functiuon remove($entryid){
-   if (empty($entryid)){
+function remove($entryid){
+  if (empty($entryid)){
     $this->lastErrorString = "Missing  id ".__LINE__." "; 
     return false;   
   }

@@ -71,7 +71,7 @@ function procesPost($doc_name,$body,$tags) {
      try {
      $documentManager->create($doc_val);
      } catch(Exception $e){
-       return array('status' => 'failure creating document','message'=> "".$e->getMessage()."" );	
+       return array('status' => 'failure','message'=> "".$e->getMessage()."" );	
      }
      
      // Adding note
@@ -80,7 +80,7 @@ function procesPost($doc_name,$body,$tags) {
      try {
        $postManager->create($documentManager->getRecentID(), $body_val);
      } catch(Exception $e){
-     	return array('status' => 'failure adding note','message'=> "".$e->getMessage()."" );
+     	return array('status' => 'failure','message'=> "".$e->getMessage()."" );
      }
      
      if ($tag_included == TRUE){
@@ -88,11 +88,56 @@ function procesPost($doc_name,$body,$tags) {
      	try {
      	$tagManager->create($tag_val);
      	} catch (Exception $e){
-     	  return  array('status' => 'Failure adding tag','message'=>"".$e->getMessage()."" );	
+     	  return  array('status' => 'failure','message'=>"".$e->getMessage()."" );	
      	}
      	
      }
-   return array('Status'=> 'Success','input' => array('body' => ''.$body_val.'','tags' => ''.$tag_val.''),'docid' => "". $documentManager->getRecentID() ."" );     
+   try {  
+   $last_entry_id = $postManager->recentEntryID();
+   } catch(Exception $e){
+   	  return array('status' => 'failure', 'message'=>"".$e->getMessage()."");
+   }
+   
+   return array('status'=> 'success','entry_id' => "".$last_entry_id."");     
+}
+
+
+function  getNote($entry_id){
+	$postManager = new PostManager();
+	if (is_array($entry_id)){
+		$entries = array();
+        foreach ($entry_id as $item){
+        	try {
+        		$last_entry = $postManager->getNote($item);
+        	} catch(Exception $e) {
+        		return array('status'=>"failure",'message' => "".$e->getMessage() ."");
+        	}
+        	
+        	$entries[] = array('docid' => "".$last_entry[0]->get('docid')->value."",
+	                'entryid' => "".$last_entry[0]->get('entryid')->value."",
+	                'entrybody' => "".$last_entry[0]->get('entrybody')->value."",
+	                'created_on' => "".$last_entry[0]->get('created_on')->value.""
+	                );
+	                  
+        }
+        $res = array("status" => "success", "entries" => $entries);		
+	}
+	else {
+	
+	    try {
+		   $last_entry = $postManager->getNote($entry_id);
+	    } catch(Exception $e) {
+		  return array('status'=>"failure",'message' => "".$e->getMessage() ."");
+	    }
+	 
+	    $res = array( "status" => "success", 
+	           "entries" => array(array('docid' => "".$last_entry[0]->get('docid')->value."",
+	           'entryid' => "".$last_entry[0]->get('entryid')->value."",
+	           'entrybody' => "".$last_entry[0]->get('entrybody')->value."",
+	           'created_on' => "".$last_entry[0]->get('created_on')->value."")));
+	}
+	
+	return $res;
 }
 
 

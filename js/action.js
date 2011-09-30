@@ -28,7 +28,18 @@
 	   //alert("Saving ...." + param_obj.note_body);
 	   //$("#createnote_frm").submit();
 	   try {
-	   $.post("notes/?q=add",param_obj,function(data){alert(data)});
+	   $.post("notes/?q=add",param_obj,function(data){
+		   json_obj = JSON.parse(data);
+		   if (json_obj.status == 'success'){
+			   param_obj = {};
+			   param_obj.id = '1317349621-xp-958954';
+			  $.get('notes/?q=get',param_obj,function(data){alert(data)}); 
+		   }
+		   else {
+		     alert(" post failute  " +json_obj.status);
+		   }
+		   
+		   });
 	   } catch(err){
 		   alert("Post error "+ err.description);
 	   }

@@ -21,7 +21,9 @@ session_start_wrap();
    -->
    
    <script type="text/javascript" src="js/test.js"></script>
-    <script type="text/javascript" src="js/action.js"></script>
+   
+      <script type="text/javascript" src="js/json2.js"></script>
+       <script type="text/javascript" src="js/action.js"></script>
    <!--
    <script type="text/javascript" src=""></script>
    --> 

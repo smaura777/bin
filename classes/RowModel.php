@@ -69,6 +69,10 @@
     }
     
     function toConstraints(){
+    	if (count($this->cellConstraintCollection) <= 0) {
+    	  return "";	
+    	}
+    	
     	$count = 0;
     	$constraintList = "WHERE ";
     	foreach ($this->cellConstraintCollection as $cell){
