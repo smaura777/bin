@@ -12,7 +12,7 @@ session_start_wrap();
  
  
  logout();
- header("location: http://localhost:8888/".APPNAME."/");
+  header("location: http://" . $_SERVER['SERVER_NAME']);
    
 ob_end_flush();
 

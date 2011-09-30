@@ -1,6 +1,6 @@
 <?php
 
-define('APPNAME',"netbin");
+define('APPNAME',"");
 
 require_once "".$_SERVER['DOCUMENT_ROOT']."/".APPNAME."/settings/dev.inc.php";
 require_once "".$_SERVER['DOCUMENT_ROOT']."/".APPNAME."/utils/utilities.php";

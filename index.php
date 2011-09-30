@@ -5,6 +5,7 @@ session_start_wrap();
   
 ?>
 <!DOCTYPE html>
+<html>
 <head>
   <title><?php echo APPNAME; ?></title>
   <link rel="stylesheet" type="text/css" media="screen" href="style/style.css">

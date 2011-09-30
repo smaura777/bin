@@ -13,7 +13,7 @@ session_start_wrap();
  $r_val = processLoginRequest($user_label,$password_label);
  
  if ($r_val ==''){
-   header("location: http://localhost:8888/".APPNAME."/");
+    header("location: http://" . $_SERVER['SERVER_NAME']);
  }
  else {
    echo "<i>".$r_val."</i>";
