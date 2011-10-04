@@ -45,24 +45,14 @@
       <div id="mastercontent_wrap">
          <!-- inner master wrap start -->
          <div id="innermaster_wrap">
-            sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
-             sdf sfd sdfsddsfdsfdsf sf sdsddsf
+           
                
          </div>
          <!-- inner master wrap end -->
            
          <!-- inner detail wrap start -->          
           <div id="innerdetail_wrap">
+          <!--
           sdf sfd sdfsddsfdsfdsf sf sdsddsf
            sdf sfd sdfsddsfdsfdsf sf sdsddsf
              sdf sfd sdfsddsfdsfdsf sf sdsddsf
@@ -138,7 +128,7 @@
              sdf sfd sdfsddsfdsfdsf sf sdsddsf
              sdf sfd sdfsddsfdsfdsf sf sdsddsf
              
-             
+             -->
              
              
           </div>

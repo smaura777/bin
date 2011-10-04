@@ -33,7 +33,9 @@
 		   if (json_obj.status == 'success'){
 			   param_obj = {};
 			   param_obj.id = '1317349621-xp-958954';
-			  $.get('notes/?q=get',function(data){alert(data)}); 
+			  //$.get('notes/?q=get',function(data){alert(data)}); 
+			    menu_actions.toggleModal('modal_wrapper');
+			  page_actions.updateEntries();
 		   }
 		   else {
 		     alert(" post failute  " +json_obj.status);
@@ -45,7 +47,25 @@
 	   }
    });
    
- })  
+   page_actions.updateEntries();
+   // OnPage load
+   /**
+   $.get('notes/?q=get',function(data){
+      var json_obj = JSON.parse(data);
+      if (json_obj.status == 'success'){
+          // $("#innermaster_wrap").html("<div><pre>"+data+" </pre></div>");
+          // alert(data);
+          for (i = 0; i < json_obj.entries.length; i++){
+             $("#innermaster_wrap").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
+          }
+      }
+      else {
+        $("#innermaster_wrap").html("<div>No Notes</div>");
+      }
+   }); 
+   **/
+   
+ });  
  
  
  
@@ -64,6 +84,38 @@
        //alert("Hey...");
    }
  };
+ 
+ var page_actions = {
+   updateEntries: function(){
+     // Start
+     
+     $.get('notes/?q=get',function(data){
+      var json_obj = JSON.parse(data);
+      if (json_obj.status == 'success'){
+          // $("#innermaster_wrap").html("<div><pre>"+data+" </pre></div>");
+          // alert(data);
+         // alert(json_obj.entries.length);
+          for (i = 0; i < json_obj.entries.length; i++){
+             if (i == 0){
+               $("#innermaster_wrap").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
+             }
+             else {
+                $("#innermaster_wrap").append("<div><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
+           
+             }
+          }
+      }
+      else {
+        $("#innermaster_wrap").html("<div>No Notes</div>");
+      }
+   }); 
+      
+      
+     // End 
+   }
+   
+ };
+ 
  
  
  

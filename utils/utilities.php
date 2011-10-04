@@ -132,10 +132,10 @@ function  getNote($entry_id){
         $entries = array();
 
 	    foreach ($last_entry as $item){
-	    	$entries[] =  array(array('docid' => "".$item->get('docid')->value."",
+	    	$entries[] =  array('docid' => "".$item->get('docid')->value."",
 	           'entryid' => "".$item->get('entryid')->value."",
 	           'entrybody' => "".$item->get('entrybody')->value."",
-	           'created_on' => "".$item->get('created_on')->value.""));
+	           'created_on' => "".$item->get('created_on')->value."");
 	    }
 	    
 	    $res = array( "status" => "success", "entries" => $entries);

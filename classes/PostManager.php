@@ -84,7 +84,7 @@ class PostManager {
    	return $result;
    }
   
-   public function getAllNotes($limit = 3){
+   public function getAllNotes($limit = 50){
    	
    	if (!isset($_SESSION['user_object'])){
    		throw new Exception("User is not logged in");

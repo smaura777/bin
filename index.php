@@ -39,12 +39,10 @@ session_start_wrap();
 
 if (isset($_SESSION['isLoggedIn']) && ($_SESSION['isLoggedIn'] == TRUE) ){
    $status = "logged in";
-   include_once "templates/page.php";
+   include_once "templates/page.php"; 
+   //var_dump($_SESSION['user_object']);
    
-  //echo "<div><h3>Welcome</h3></div>";
-  // echo "<div><a href=\"logout.php\">logout</a></div>";  
-  // echo "<div>Session_id : ".session_id()."</div>"; 
-  var_dump($_SESSION['user_object']);
+   
 }
 else {
   include_once 'login.php';
