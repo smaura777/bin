@@ -77,7 +77,7 @@
     	$constraintList = "WHERE ";
     	foreach ($this->cellConstraintCollection as $cell){
     		if ($count > 0){
-    			$constraintList .= ", ";
+    			$constraintList .= " AND ";
     		}
     		$constraintList .= $cell['cell']->label ." ".$cell['constraint'] ." ".$cell['cell']->value." ";
     		++$count;

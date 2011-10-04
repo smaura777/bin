@@ -104,7 +104,7 @@ function procesPost($doc_name,$body,$tags) {
 
 function  getNote($entry_id){
 	$postManager = new PostManager();
-	if (is_array($entry_id)){
+	if ( !(is_null($entry_id)) &&  is_array($entry_id) ) {
 		$entries = array();
         foreach ($entry_id as $item){
         	try {
@@ -125,16 +125,20 @@ function  getNote($entry_id){
 	else {
 	
 	    try {
-		   $last_entry = $postManager->getNote($entry_id);
+		   $last_entry = $postManager->getAllNotes();
 	    } catch(Exception $e) {
 		  return array('status'=>"failure",'message' => "".$e->getMessage() ."");
 	    }
-	 
-	    $res = array( "status" => "success", 
-	           "entries" => array(array('docid' => "".$last_entry[0]->get('docid')->value."",
-	           'entryid' => "".$last_entry[0]->get('entryid')->value."",
-	           'entrybody' => "".$last_entry[0]->get('entrybody')->value."",
-	           'created_on' => "".$last_entry[0]->get('created_on')->value."")));
+        $entries = array();
+
+	    foreach ($last_entry as $item){
+	    	$entries[] =  array(array('docid' => "".$item->get('docid')->value."",
+	           'entryid' => "".$item->get('entryid')->value."",
+	           'entrybody' => "".$item->get('entrybody')->value."",
+	           'created_on' => "".$item->get('created_on')->value.""));
+	    }
+	    
+	    $res = array( "status" => "success", "entries" => $entries);
 	}
 	
 	return $res;

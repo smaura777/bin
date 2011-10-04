@@ -33,7 +33,7 @@
 		   if (json_obj.status == 'success'){
 			   param_obj = {};
 			   param_obj.id = '1317349621-xp-958954';
-			  $.get('notes/?q=get',param_obj,function(data){alert(data)}); 
+			  $.get('notes/?q=get',function(data){alert(data)}); 
 		   }
 		   else {
 		     alert(" post failute  " +json_obj.status);

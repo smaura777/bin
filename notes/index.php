@@ -22,15 +22,17 @@ switch ($_SERVER['REQUEST_METHOD']){
 		
 	break;
 	case 'GET':
+		// id,id2,id3
 		if (isset($_GET['id']) && $_GET['id'] != ''){
-	       $id = $_GET['id'];		
+			$id_list  = explode(',', $_GET['id']);
+			$r_val = getNote($id_list);	
 		}
 		else {
-			echo json_encode(array('status' => 'failure','message' => 'missing ID'));
-		    break;
+			// In that case get up to 50
+			$r_val = getNote(NULL);
 		}
 	    
-		$r_val = getNote($id);
+		
 	    
 	    echo json_encode($r_val);
 	    	

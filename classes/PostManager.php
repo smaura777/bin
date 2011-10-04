@@ -53,12 +53,24 @@ class PostManager {
   
   
    public function getNote($entryid){
+   	
+   	if (!isset($_SESSION['user_object'])){
+   		throw new Exception("User is not logged in");
+   	}
+   	
+   	if (empty($_SESSION['user_object']->id)){
+   		throw new Exception("Missign user ID");
+   	}
+   	 
+   	$user_object = $_SESSION['user_object'];
+   	
    	$rowmodel = new RowModel();
    	$rowmodel->set('docid');
    	$rowmodel->set('entryid');
    	$rowmodel->set('entrybody');
    	$rowmodel->set('created_on');
    	$rowmodel->setConstraint("entryid","'" . $entryid  . "'");
+   	$rowmodel->setConstraint("uid","'" . $user_object->id . "'");
    	
    	$tablemodel = new TableModel();
    	$tablemodel->tableName = "entry";
@@ -72,6 +84,37 @@ class PostManager {
    	return $result;
    }
   
+   public function getAllNotes($limit = 3){
+   	
+   	if (!isset($_SESSION['user_object'])){
+   		throw new Exception("User is not logged in");
+   	}
+   	
+   	if (empty($_SESSION['user_object']->id)){
+   		throw new Exception("Missign user ID");
+   	}
+   	
+   	$user_object = $_SESSION['user_object'];
+   	
+   	$rowmodel = new RowModel();
+   	$rowmodel->set('docid');
+   	$rowmodel->set('entryid');
+   	$rowmodel->set('entrybody');
+   	$rowmodel->set('created_on');
+   	$rowmodel->setConstraint("uid","'" . $user_object->id . "'");
+   
+   	$tablemodel = new TableModel();
+   	$tablemodel->tableName = "entry";
+   
+   	try {
+   		$result = $tablemodel->fetch($rowmodel,$limit);
+   	} catch(Exception $e){
+   		throw $e;
+   	}
+   
+   	return $result;
+   }
+   
    
    
    
