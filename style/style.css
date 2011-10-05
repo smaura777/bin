@@ -14,10 +14,11 @@ body {
  border-top: 30px solid #87A96B;
 }
 
+/**
 #outer_wrap {
    border-top: 260px solid #dedede;
 }
-
+**/
 ul {
  padding:0;
  margin:0;
@@ -31,8 +32,8 @@ ul {
 
  
  #masthead_wrap ul {
-  padding-bottom: 20px;
-   padding-top: 10px;
+  padding-bottom: 5px;
+   padding-top: 5px;
   margin-left: 10px;
  }
  
@@ -52,25 +53,26 @@ ul {
    margin-right:auto;
    margin-top:0;
    outline: 6px solid gray;
-   margin-top: -220px;
+   
   background-color: #fff;
 }
 
 #content_frame {
   overflow: auto;
+  background-color: #dedede;
 }
 
 #leftmenu_frame {
- width: 100px;
- border-right: 0px solid blue;
- float: left;
- background-color: #FF;
+  width: 290px;
+  border-right: 0px solid blue;
+  float: left;
 }
 
+
 #mastercontent_wrap {
-  width: 880px;
- 
-  float: left;
+  width: 690px;
+  background-color: #fff;
+  float: right;
  /**  background-color: lightBlue; **/
    overflow: auto;
 
@@ -78,8 +80,8 @@ ul {
 
 
 #innermaster_wrap {
-  width: 380px;
-  float: left;
+  
+
 }
 
 #innerdetail_wrap {

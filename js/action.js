@@ -97,7 +97,7 @@
          // alert(json_obj.entries.length);
           for (i = 0; i < json_obj.entries.length; i++){
              if (i == 0){
-               $("#innermaster_wrap").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
+               $("#innermaster_wrap_content").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
              }
              else {
                 $("#innermaster_wrap").append("<div><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
