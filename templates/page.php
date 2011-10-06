@@ -59,22 +59,16 @@
                  <li>Delete</li>
                </ul>
              </div>
-   
            </div>
-    <!-- masthead wrap end -->  
-           <div id="innermaster_wrap_content"> 
-             
-           </div>   
-              
-               
+          <!-- masthead wrap end -->  
+           <div id="innermaster_wrap_content">  </div>   
+    
          </div>
          <!-- inner master wrap end -->
            
          <!-- inner detail wrap start          
           <div id="innerdetail_wrap">
-         
-             
-             
+                
           </div>
           -->
       </div>

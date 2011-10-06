@@ -29,13 +29,14 @@
 	   //$("#createnote_frm").submit();
 	   try {
 	   $.post("notes/?q=add",param_obj,function(data){
+		   //alert(data);
 		   json_obj = JSON.parse(data);
 		   if (json_obj.status == 'success'){
 			   param_obj = {};
 			   param_obj.id = '1317349621-xp-958954';
 			  //$.get('notes/?q=get',function(data){alert(data)}); 
-			    menu_actions.toggleModal('modal_wrapper');
-			  page_actions.updateEntries();
+			   menu_actions.toggleModal('modal_wrapper');
+			   page_actions.updateEntries();
 		   }
 		   else {
 		     alert(" post failute  " +json_obj.status);
@@ -97,10 +98,12 @@
          // alert(json_obj.entries.length);
           for (i = 0; i < json_obj.entries.length; i++){
              if (i == 0){
-               $("#innermaster_wrap_content").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
+               $("#innermaster_wrap_content").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> " +
+               		"<ul><li class='entry_edit'>edit</li> <li class='entry_delete'>delete</li> </ul></div>");
              }
              else {
-                $("#innermaster_wrap").append("<div><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> </div>");
+                $("#innermaster_wrap_content").append("<div id='entry_'"+json_obj.entries[i].entryid+"'><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div>" +
+                		"<ul><li class='entry_edit'>edit</li> <li class='entry_delete'>delete</li> </ul> </div>");
            
              }
           }

@@ -34,7 +34,7 @@ ul {
  #masthead_wrap ul {
   padding-bottom: 5px;
    padding-top: 5px;
-  margin-left: 10px;
+  margin-left: 20px;
  }
  
 #masthead_wrap ul li {
@@ -51,8 +51,9 @@ ul {
    width: 980px;
    margin-left:auto;
    margin-right:auto;
-   margin-top:0;
-   outline: 6px solid gray;
+   margin-top:20px;
+   margin-bottom:20px;
+   outline: 0px solid gray;
    
   background-color: #fff;
 }
@@ -60,6 +61,7 @@ ul {
 #content_frame {
   overflow: auto;
   background-color: #dedede;
+  
 }
 
 #leftmenu_frame {
@@ -79,9 +81,8 @@ ul {
 }
 
 
-#innermaster_wrap {
-  
-
+#innermaster_wrap_content {
+  margin:20px 20px 20px 20px;  
 }
 
 #innerdetail_wrap {

@@ -61,12 +61,27 @@ function create($display,$description=''){
 
 function remove($docid){
   
-	if (empty($docid)){
+  if (empty($docid)){
     throw new Exception("Missign doc ID");
   }
   
   if (!isset($_SESSION['user_object'])){
-  	throw new Exception("You must be logged in");
+    throw new Exception("User is not logged in");
+  }
+  
+  if (empty($_SESSION['user_object']->id)){
+    throw new Exception("Missign user ID");
+  }
+  $rowmodel = new RowModel();
+  $tablemodel = new TableModel();
+  $tablemodel->tableName = "documents";
+  $rowmodel->setConstraint('uid',"'" . $user_object->id . "'");
+  $rowmodel->setConstraint('docid',"'" . $docid . "'");
+  
+  try {
+  	   $tablemodel->remove($rowmodel);
+  } catch(Exception $e){
+  	die("<p> ". $e->getMessage() . "</p>");
   }
   
 //  $this->_connection->query("DELETE from documents where docid = '".$docid."'  LIMIT 1");

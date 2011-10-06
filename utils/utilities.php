@@ -63,7 +63,14 @@ function procesPost($doc_name,$body,$tags) {
      if (isset($_POST[$tags]) ){
        if (!empty($_POST[$tags]) ){
        	$tag_included = TRUE;
-       	$tag_val = trim($_POST[$tags]);
+       	$tag_val = explode(",",strtolower(trim($_POST[$tags])));
+       	// Array dup removal
+        $tag_filter = array();	
+       	foreach ($tag_val as $element){
+       	  $tag_filter['"'.$element .'"'] = $element;	
+       	}
+       	
+       	$tag_val = array_values($tag_filter);
        }
      }
      
@@ -84,9 +91,13 @@ function procesPost($doc_name,$body,$tags) {
      }
      
      if ($tag_included == TRUE){
+     	// Recent entry ID
+     	$recentEntryID =  $postManager->recentEntryID();
      	$tagManager = new TagManager();
      	try {
-     	$tagManager->create($tag_val);
+     	  foreach ($tag_val as $element) {	
+     	    $tagManager->create($element,'',$recentEntryID);
+     	  }
      	} catch (Exception $e){
      	  return  array('status' => 'failure','message'=>"".$e->getMessage()."" );	
      	}
@@ -116,9 +127,7 @@ function  getNote($entry_id){
         	$entries[] = array('docid' => "".$last_entry[0]->get('docid')->value."",
 	                'entryid' => "".$last_entry[0]->get('entryid')->value."",
 	                'entrybody' => "".$last_entry[0]->get('entrybody')->value."",
-	                'created_on' => "".$last_entry[0]->get('created_on')->value.""
-	                );
-	                  
+	                'created_on' => "".date($last_entry[0]->get('created_on')->value)."");
         }
         $res = array("status" => "success", "entries" => $entries);		
 	}
@@ -134,8 +143,8 @@ function  getNote($entry_id){
 	    foreach ($last_entry as $item){
 	    	$entries[] =  array('docid' => "".$item->get('docid')->value."",
 	           'entryid' => "".$item->get('entryid')->value."",
-	           'entrybody' => "".$item->get('entrybody')->value."",
-	           'created_on' => "".$item->get('created_on')->value."");
+	           'entrybody' => "".substr_replace(trim($item->get('entrybody')->value),'...',160)."",
+	           'created_on' => "".date('r',$item->get('created_on')->value)."");
 	    }
 	    
 	    $res = array( "status" => "success", "entries" => $entries);

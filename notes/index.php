@@ -15,7 +15,8 @@ switch ($_SERVER['REQUEST_METHOD']){
 		try {
 			$r_val = procesPost($doc_name,$body,$tags);
 		} catch (Exception $e){
-			echo json_encode(array("message"=>"".$e->getMessage().""));
+			echo json_encode(array('status' => 'failure',"message"=>"".$e->getMessage().""));
+			die();
 		}
 		
 		echo json_encode($r_val);

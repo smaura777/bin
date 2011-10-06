@@ -12,9 +12,6 @@ class TableModel {
 		if ($this->_connection->error){
 			die("Connect error" . $this->_connection->error);
 		}
-		else {
-			// echo "Connection established";
-		}
 	}
 	
 	function saveResultSet($result){
@@ -37,7 +34,7 @@ class TableModel {
 	  
 	  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
-	     throw new Exception("Insert error " . $this->_connection->error);
+	     throw new Exception("Insert error " . $this->_connection->error,$this->_connection->errno);
 	  }      
 	}
 	
