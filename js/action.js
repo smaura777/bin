@@ -47,8 +47,12 @@
 		   alert("Post error "+ err.description);
 	   }
    });
-   
+    
    page_actions.updateEntries();
+   
+  
+   
+   
    // OnPage load
    /**
    $.get('notes/?q=get',function(data){
@@ -99,11 +103,11 @@
           for (i = 0; i < json_obj.entries.length; i++){
              if (i == 0){
                $("#innermaster_wrap_content").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> " +
-               		"<ul><li class='entry_edit'>edit</li> <li class='entry_delete'>delete</li> </ul></div>");
+               		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit' onclick=\"menu_actions.toggleModal('modal_wrapper');\" >edit</li> <li data-entryid="+json_obj.entries[i].entryid+" class='entry_delete' onclick=\"javascript:if (confirm('Are you sure ?')) {alert('ok');}  ;\" >delete</li> </ul></div>");
              }
              else {
                 $("#innermaster_wrap_content").append("<div id='entry_'"+json_obj.entries[i].entryid+"'><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div>" +
-                		"<ul><li class='entry_edit'>edit</li> <li class='entry_delete'>delete</li> </ul> </div>");
+                		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit'>edit</li> <li data-entryid="+json_obj.entries[i].entryid+"  class='entry_delete'>delete</li> </ul> </div>");
            
              }
           }

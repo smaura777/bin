@@ -11,7 +11,7 @@ CREATE TABLE IF NOT EXISTS accounts (
   lname VARCHAR(36),
   created_on bigint unsigned NOT NULL,
   last_modified  bigint unsigned NOT NULL,
-  status ENUM('active','cancelled','blocked','innactive'),
+  status ENUM('active','cancelled','blocked','innactive') default 'active',
   PRIMARY KEY (uid),
   UNIQUE KEY (user)
 );
@@ -23,9 +23,12 @@ CREATE TABLE IF NOT EXISTS tags (
   tagdisplay VARCHAR(128) NOT NULL,
   tagdescription text,
   created_on bigint unsigned  NOT NULL,
-  uid VARCHAR(36) NOT NULL, 
+ /** uid VARCHAR(36) NOT NULL, **/
   lng float default 0.0 ,
   lat float default 0.0,
+  visibility enum('visible','hidden','deletedbyuser','deletedbyadmin') default 'visible',
+  flagged enum('yes','no') default 'no',
+  updated_on TIMESTAMP default 0 on update CURRENT_TIMESTAMP,
   PRIMARY KEY (tagid)
 );
 
@@ -43,6 +46,13 @@ CREATE TABLE IF NOT EXISTS entry_tag_mapping (
   PRIMARY KEY (entryid,tagid)
 );
 
+CREATE TABLE IF NOT EXISTS account_tag_mapping (
+  tagid VARCHAR(36)  NOT NULL,
+  uid VARCHAR(36) NOT NULL,
+  created_on bigint unsigned  NOT NULL,
+  PRIMARY KEY (uid,tagid)
+);
+
 
 CREATE TABLE IF NOT EXISTS documents (
   docid VARCHAR(36) NOT NULL,
@@ -52,6 +62,9 @@ CREATE TABLE IF NOT EXISTS documents (
   user_agent text,
   created_on bigint unsigned  NOT NULL,
   uid VARCHAR(36) NOT NULL, 
+  visibility enum('visible','hidden','deletedbyuser','deletedbyadmin') default 'visible',
+  flagged enum('yes','no') default 'no',
+  updated_on TIMESTAMP default 0 on update CURRENT_TIMESTAMP,
   PRIMARY KEY (docid)
 );
 
@@ -64,6 +77,9 @@ CREATE TABLE IF NOT EXISTS entry (
   client_ip VARCHAR(15) NOT NULL default '0.0.0.0',
   created_on bigint unsigned  NOT NULL,
   uid VARCHAR(36) NOT NULL, 
+  visibility enum('visible','hidden','deletedbyuser','deletedbyadmin') default 'visible',
+  flagged enum('yes','no') default 'no',
+  updated_on TIMESTAMP default 0 on update CURRENT_TIMESTAMP,
   PRIMARY KEY (entryid)
 );
 
@@ -75,6 +91,9 @@ CREATE TABLE IF NOT EXISTS groups (
   uid VARCHAR(36) NOT NULL, 
   lng float default 0.0 ,
   lat float default 0.0,
+  visibility enum('visible','hidden','deletedbyuser','deletedbyadmin') default 'visible',
+  flagged enum('yes','no') default 'no',
+  updated_on TIMESTAMP default 0 on update CURRENT_TIMESTAMP,
   PRIMARY KEY (groupid)
 );
 
@@ -84,6 +103,7 @@ CREATE TABLE IF NOT EXISTS group_membership (
   created_on bigint unsigned  NOT NULL,
   lng float default 0.0 ,
   lat float default 0.0,
+  updated_on TIMESTAMP default 0 on update CURRENT_TIMESTAMP,
   PRIMARY KEY (groupid,uid)
 );
 

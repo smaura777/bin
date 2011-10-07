@@ -71,6 +71,7 @@ class PostManager {
    	$rowmodel->set('created_on');
    	$rowmodel->setConstraint("entryid","'" . $entryid  . "'");
    	$rowmodel->setConstraint("uid","'" . $user_object->id . "'");
+   	$rowmodel->setConstraint("visibility","'visible'");
    	
    	$tablemodel = new TableModel();
    	$tablemodel->tableName = "entry";
@@ -101,7 +102,7 @@ class PostManager {
    	$rowmodel->set('entryid');
    	$rowmodel->set('entrybody');
    	$rowmodel->set('created_on');
-   	$rowmodel->setConstraint("uid","'" . $user_object->id . "'");
+   	$rowmodel->setConstraint("visibility","'visible'");
    
    	$tablemodel = new TableModel();
    	$tablemodel->tableName = "entry";
@@ -138,6 +139,20 @@ class PostManager {
     }
     
     
+    public function updatePost($entryid){
+      $rowmodel = new RowModel();
+      $rowmodel->set('entrybody');
+      $tablemodel = new TableModel();
+      $tablemodel->tableName = "entry";
+      
+      try {
+        $tablemodel->update($rowmodel);
+      } catch(Exception $e){
+      	throw $e;
+      }
+
+      
+    }
     
     
     

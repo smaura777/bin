@@ -16,14 +16,12 @@ function create($display,$description='',$entryid= ''){
  $tablemodel = new TableModel();
  $tablemodel->tableName = "tags";
  
- //$custom_id = md5(''.mt_rand().''.time());
+
  $custom_id = md5($display);
  $rowmodel->set("tagid","'". $custom_id . "'");
  $rowmodel->set("tagname","'" . $display . "'");
  $rowmodel->set("tagdisplay","'" . $display . "'");
- //$rowmodel->set("user_agent","'" . $_SERVER['HTTP_USER_AGENT'] . "'");
  $rowmodel->set("created_on","" . time() . "");
- $rowmodel->set("uid","'" . $_SESSION['user_object']->id . "'");
  $rowmodel->set("tagdescription","'" . $description . "'");
  
  try {
@@ -57,14 +55,27 @@ function create($display,$description='',$entryid= ''){
  }
  
  
+ // Adding tag to account mapping
+ 
+ $tablemodel->tableName = "account_tag_mapping";
+ $aRowModel = new RowModel();
+ $aRowModel->set('tagid',"'".$custom_id."'");
+ $aRowModel->set("uid","'" . $_SESSION['user_object']->id . "'");
+ $aRowModel->set('created_on',"".time()."");
+ 
+ try {
+   $tablemodel->add($aRowModel);  	
+ } catch (Exception $e){
+ 	// Ignore dup key errors
+ 	echo "ERR Code 2 " . $e->getCode();
+ 	if ($e->getCode() != 1062){
+ 	  die("{$e->getMessage()}");
+ 	}
+ }
  
  
  
- /**
-    $this->_connection->query("INSERT INTO tags (tagid,tagname,tagdisplay,user_agent,created_on,uid,tagdescription) values
-     ('".md5(''.mt_rand().''.time())."','".$display."','".$display."','".$_SERVER['HTTP_USER_AGENT']."',".time().", '".$_SESSION['user_object']->id."','".$description."')");
-  
-  **/
+
 
 }
 
