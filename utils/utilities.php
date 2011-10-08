@@ -297,7 +297,50 @@ function processLoginRequest($user,$password){
  }
 
  
+function deletePost($entryid){
+	if (!isset($_POST[$entryid]) ){
+		throw new Exception("Post id not set");
+	}
+	
+	if (empty($_POST[$entryid])){
+		throw new Exception("Post id is empty");
+	}
+	
+	$postManager = new PostManager();
+	try {
+		$postManager->deletePost(trim($_POST[$entryid]));
+	} catch(Exception $e){
+		return array('status' => 'failure','message'=> "".$e->getMessage()."" );
+	}  	
+}
  
+function updatePost($entryid,$body,$tags){
+	
+	if (!isset($_POST[$entryid]) ){
+		throw new Exception("Post id not set");
+	}
+	
+	if (empty($_POST[$entryid])){
+		throw new Exception("Post id is empty");
+	}
+	
+	if (!isset($_POST[$body]) ){
+		throw new Exception("Post body not set");
+	}
+	 
+	if (empty($_POST[$body])){
+		throw new Exception("Post body is empty");
+	}
+    
+	$postManager = new PostManager();
+	try {
+		$postManager->updatePost(trim($_POST[$entryid]));
+	} catch(Exception $e){
+		return array('status' => 'failure','message'=> "".$e->getMessage()."" );
+	}
+	
+	
+} 
 
 function session_start_wrap(){
   session_start();

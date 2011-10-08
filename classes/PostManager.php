@@ -3,7 +3,17 @@
 class PostManager {
    
    private $recent_entryid; 	
-	
+   private $postBody;
+   
+   public function  setPostBody($body){
+   	 $this->postBody = $body;
+   }
+   
+   public function postBody(){
+   	return $this->postBody;
+   }
+   
+   
    public function create($docid,$body){
    	  
       if (!isset($_SESSION['user_object'])){
@@ -139,9 +149,21 @@ class PostManager {
     }
     
     
-    public function updatePost($entryid){
+    public function deletePost($entryid){
+      $tablemodel = new TableModel();
+      $tablemodel->tableName = "entry";
       $rowmodel = new RowModel();
-      $rowmodel->set('entrybody');
+      $rowmodel->setConstraint('entryid',$entryid);
+      try {
+      	$tablemodel->remove($rowmodel);
+      } catch(Exception $e){
+      	throw $e;
+      }	
+    }
+    
+    public function updatePost($entryid,$body='',$tags=NULL){
+      $rowmodel = new RowModel();
+      $rowmodel->set('entrybody',$body);
       $tablemodel = new TableModel();
       $tablemodel->tableName = "entry";
       
