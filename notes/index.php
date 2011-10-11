@@ -8,18 +8,35 @@ session_start_wrap();
 switch ($_SERVER['REQUEST_METHOD']){
 	case 'POST':
 		
-		$body = "note_body";
-		$tags  = "note_tags";
-		$doc_name = "docname";
-		
-		try {
-			$r_val = procesPost($doc_name,$body,$tags);
-		} catch (Exception $e){
-			echo json_encode(array('status' => 'failure',"message"=>"".$e->getMessage().""));
-			die();
+		switch($_POST['action']){
+			case 'deletepost':
+				if (isset($_POST['entryid']) && ($_POST['entryid'] !=  '') ){
+					$r_val = deletePost($_POST['entryid']);
+				    echo json_encode($r_val);
+				}
+				else {
+					echo json_encode(array('status' => 'failure','message' => 'Missing ID'));
+				}
+				
+			break;
+			case 'updatepost':
+			break;
+			default:
+				
+				$body = "note_body";
+				$tags  = "note_tags";
+				$doc_name = "docname";
+						
+				try {
+				$r_val = procesPost($doc_name,$body,$tags);
+				} catch (Exception $e){
+				echo json_encode(array('status' => 'failure',"message"=>"".$e->getMessage().""));
+				die();
+				}
+				
+				echo json_encode($r_val);					
 		}
 		
-		echo json_encode($r_val);
 		
 	break;
 	case 'GET':

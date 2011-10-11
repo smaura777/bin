@@ -55,10 +55,12 @@ class TableModel {
 	  if (empty($this->tableName)){
 			throw new Exception("Empty table name");
 	  }
-	  $this->queryOp = "UPDATE {$this->tableName} SET  {$row->toColumns()}  WHERE {$row->toConstraints()}";
+	  $this->queryOp = "UPDATE {$this->tableName} SET  {$row->toColumns()}   {$row->toConstraints()}";
+	 // echo " Running query  $this->queryOp ";
 	  $result =  $this->_connection->query($this->queryOp);
+	  
 	  if ($this->_connection->error){
-	  	throw new Exception("Select error ");
+	  	throw new Exception("update error  and " + $this->queryOp +"");
 	  }	   	
 	}
 	

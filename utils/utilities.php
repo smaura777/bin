@@ -298,20 +298,14 @@ function processLoginRequest($user,$password){
 
  
 function deletePost($entryid){
-	if (!isset($_POST[$entryid]) ){
-		throw new Exception("Post id not set");
-	}
-	
-	if (empty($_POST[$entryid])){
-		throw new Exception("Post id is empty");
-	}
-	
 	$postManager = new PostManager();
 	try {
-		$postManager->deletePost(trim($_POST[$entryid]));
+		$postManager->deletePost(trim($entryid));
 	} catch(Exception $e){
 		return array('status' => 'failure','message'=> "".$e->getMessage()."" );
-	}  	
+	} 
+
+	return array('status' => 'success','message' => 'Post deleted');
 }
  
 function updatePost($entryid,$body,$tags){

@@ -21,6 +21,7 @@
    // Note form
    $("#postsave_bt").click(function(){
 	   param_obj = {};
+	   param_obj.action = '';
 	   param_obj.note_body = document.create_note.note_body.value;
 	   param_obj.note_tags = document.create_note.note_tags.value;
 	   param_obj.docname = document.create_note.docname.value;
@@ -102,12 +103,18 @@
          // alert(json_obj.entries.length);
           for (i = 0; i < json_obj.entries.length; i++){
              if (i == 0){
-               $("#innermaster_wrap_content").html("<div><div class='entrybody'>"+json_obj.entries[i].entrybody+" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div> " +
-               		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit' onclick=\"menu_actions.toggleModal('modal_wrapper');\" >edit</li> <li data-entryid="+json_obj.entries[i].entryid+" class='entry_delete' onclick=\"javascript:if (confirm('Are you sure ?')) {alert('ok');}  ;\" >delete</li> </ul></div>");
+               $("#innermaster_wrap_content").html("<div id='entry_"+json_obj.entries[i].entryid+"'><div class='entrybody'> "+json_obj.entries[i].entrybody+" </div>" +
+               		"<div class='created_on'>"+json_obj.entries[i].created_on+"</div> " +
+               		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit' onclick=\"menu_actions.toggleModal('modal_wrapper');\" >edit</li> " +
+               	    "<li data-entryid="+json_obj.entries[i].entryid+" class='entry_delete' onclick=\"javascript:if (confirm('Are you sure ?')) {page_actions.deletePost('"+json_obj.entries[i].entryid+"');}  ;\" >" +
+               	    "delete</li> </ul></div>");
              }
              else {
-                $("#innermaster_wrap_content").append("<div id='entry_'"+json_obj.entries[i].entryid+"'><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div><div class='created_on'>"+json_obj.entries[i].created_on+"</div>" +
-                		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit'>edit</li> <li data-entryid="+json_obj.entries[i].entryid+"  class='entry_delete'>delete</li> </ul> </div>");
+                $("#innermaster_wrap_content").append("<div id='entry_"+json_obj.entries[i].entryid+"'><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div>" +
+                "<div class='created_on'>"+json_obj.entries[i].created_on+"</div>" +
+                		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit'>edit</li> " +
+                		"<li data-entryid="+json_obj.entries[i].entryid+"  class='entry_delete' onclick=\"javascript:if (confirm('Are you sure ?')) {page_actions.deletePost('"+json_obj.entries[i].entryid+"');}\">delete</li>" +
+                	 " </ul> </div>");
            
              }
           }
@@ -119,7 +126,21 @@
       
       
      // End 
-   }
+   },
+ 
+  deletePost : function(entryid){
+	  //alert('deleting post...');
+	  param_obj = {};
+	  param_obj.action = 'deletepost';
+	  param_obj.entryid = entryid;
+	  $.post('notes/',param_obj,function(data){
+	    alert(data);  	  
+	  });  
+    },
+    
+ getPost : function(entryid){
+	 $.get('notes/?q=get',function(data){});
+ }   
    
  };
  
