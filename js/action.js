@@ -26,11 +26,22 @@
 	   param_obj.note_tags = document.create_note.note_tags.value;
 	   param_obj.docname = document.create_note.docname.value;
 	   
+	   if (document.create_note.entid.value){
+		 param_obj.entryid =   document.create_note.entid.value;
+		 alert("sending id " + document.create_note.entid.value );
+	   }
+	   
+	   if (document.create_note.action.value){
+		  alert("sending  action " + document.create_note.action.value ); 
+		  param_obj.action =   document.create_note.action.value;
+	   }
+	   
+	   
 	   //alert("Saving ...." + param_obj.note_body);
 	   //$("#createnote_frm").submit();
 	   try {
 	   $.post("notes/?q=add",param_obj,function(data){
-		   //alert(data);
+		   alert(data);
 		   json_obj = JSON.parse(data);
 		   if (json_obj.status == 'success'){
 			   param_obj = {};
@@ -105,14 +116,14 @@
              if (i == 0){
                $("#innermaster_wrap_content").html("<div id='entry_"+json_obj.entries[i].entryid+"'><div class='entrybody'> "+json_obj.entries[i].entrybody+" </div>" +
                		"<div class='created_on'>"+json_obj.entries[i].created_on+"</div> " +
-               		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit' onclick=\"menu_actions.toggleModal('modal_wrapper');\" >edit</li> " +
+               		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit' onclick=\"page_actions.getPost('"+ json_obj.entries[i].entryid +"');   \" >edit</li> " +
                	    "<li data-entryid="+json_obj.entries[i].entryid+" class='entry_delete' onclick=\"javascript:if (confirm('Are you sure ?')) {page_actions.deletePost('"+json_obj.entries[i].entryid+"');}  ;\" >" +
                	    "delete</li> </ul></div>");
              }
              else {
                 $("#innermaster_wrap_content").append("<div id='entry_"+json_obj.entries[i].entryid+"'><div class='entrybody'>"+json_obj.entries[i].entrybody +" </div>" +
                 "<div class='created_on'>"+json_obj.entries[i].created_on+"</div>" +
-                		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit'>edit</li> " +
+                		"<ul><li data-entryid="+json_obj.entries[i].entryid+" class='entry_edit' onclick=\"page_actions.getPost('"+ json_obj.entries[i].entryid +"') \" >edit</li> " +
                 		"<li data-entryid="+json_obj.entries[i].entryid+"  class='entry_delete' onclick=\"javascript:if (confirm('Are you sure ?')) {page_actions.deletePost('"+json_obj.entries[i].entryid+"');}\">delete</li>" +
                 	 " </ul> </div>");
            
@@ -134,12 +145,27 @@
 	  param_obj.action = 'deletepost';
 	  param_obj.entryid = entryid;
 	  $.post('notes/',param_obj,function(data){
-	    alert(data);  	  
+	    alert(data);  	
+	    page_actions.updateEntries();
 	  });  
     },
     
  getPost : function(entryid){
-	 $.get('notes/?q=get',function(data){});
+	 param_obj = {};
+	 param_obj.id = entryid;
+	
+	 $.get('notes/?q=get',param_obj,function(data){
+		// alert(data);
+		 var json_obj = JSON.parse(data);
+		 alert(json_obj.entries[0].entryid);
+		 document.create_note.note_body.value = "";
+		 document.create_note.note_body.value = ""+json_obj.entries[0].entrybody +"";
+		 document.create_note.entid.value = ''+json_obj.entries[0].entryid +'';
+		 document.create_note.action.value = "updatepost";
+		 menu_actions.toggleModal('modal_wrapper');
+		
+		 //alert($('#node_body').val("" + json_obj.entries[0].entrybody + ""));
+	 });
  }   
    
  };

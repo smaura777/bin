@@ -20,6 +20,14 @@ switch ($_SERVER['REQUEST_METHOD']){
 				
 			break;
 			case 'updatepost':
+		        if ( isset($_POST['entryid']) && ($_POST['entryid'] !=  '') && isset($_POST['note_body']) && ($_POST['note_body'] != '') ){
+					
+		        	$r_val = updatePost($_POST['entryid'],$_POST['note_body']);
+				    echo json_encode($r_val);
+				}
+				else {
+					echo json_encode(array('status' => 'failure','message' => 'Missing ID for update'));
+				}	
 			break;
 			default:
 				

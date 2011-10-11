@@ -154,7 +154,7 @@ class PostManager {
       $tablemodel->tableName = "entry";
       $rowmodel = new RowModel();
       $rowmodel->set('visibility',"'deletedbyuser'");
-       $rowmodel->setConstraint('entryid',"'"+$entryid+"'");
+       $rowmodel->setConstraint('entryid',"'".$entryid."'");
       try {
       	//echo "About to";
       	$tablemodel->update($rowmodel);
@@ -165,8 +165,8 @@ class PostManager {
     
     public function updatePost($entryid,$body='',$tags=NULL){
       $rowmodel = new RowModel();
-      $rowmodel->set('entrybody',"$body");
-      $rowmodel->setConstraint('entryid',"'"+$entryid+"'");
+      $rowmodel->set('entrybody',"'".$body."'");
+      $rowmodel->setConstraint('entryid',"'".$entryid."'");
       $tablemodel = new TableModel();
       $tablemodel->tableName = "entry";
       

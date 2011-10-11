@@ -81,12 +81,14 @@ else {
       <form id="createnote_frm" name="create_note" enctype="application/x-www-form-urlencoded" method="POST" action="notes/?q=add">
       <div class="frm_input">
        <input type="text" size="80" name="docname" value="">
+       <input type="hidden"  name="action" value="">
+        <input type="hidden"  name="entid" value="">
       </div>
       <div class="frm_input">
-        <textarea class="note_body" id="note_body" rows='10' cols='80' name="note_body" placeholder="Enter a note here" required autofocus></textarea>
+        <textarea class="note_body" id="note_body" rows='10' cols='80' name="note_body"  placeholder="Enter notes here"  required autofocus></textarea>
       </div>
       <div class="frm_input frm_textarea">  
-        <textarea class="note_tags" rows='2' cols='80' id="note_tags" name="note_tags" placeholder="Enter tags here"></textarea>
+        <textarea class="note_tags" rows='2' cols='80' id="note_tags" name="note_tags" value="asksak saks"  placeholder="Enter tags here"></textarea>
       </div>  
       
       <div class="frm_input frm_select">  

@@ -94,19 +94,27 @@ function procesPost($doc_name,$body,$tags) {
      	// Recent entry ID
      	$recentEntryID =  $postManager->recentEntryID();
      	$tagManager = new TagManager();
-     	try {
+     	//try {
      	  foreach ($tag_val as $element) {	
+     	  	try {
      	    $tagManager->create($element,'',$recentEntryID);
+     	  	} catch (Exception $e){
+     	  	  if ($e->getCode()  != 1062 ){
+     	  	  	   return  array('status' => 'failure','message'=>"".$e->getMessage()." code =  " . $e->getCode() . "  "   . __LINE__ );	
+     	  	  }	
+     	  	}
+     	   
      	  }
-     	} catch (Exception $e){
-     	  return  array('status' => 'failure','message'=>"".$e->getMessage()."" );	
-     	}
+     	//} catch (Exception $e){
+     	  //return  array('status' => 'failure','message'=>"".$e->getMessage()." code =  " . $e->getCode() . "  "   . __LINE__ );	
+     	//}
      	
      }
+     
    try {  
    $last_entry_id = $postManager->recentEntryID();
    } catch(Exception $e){
-   	  return array('status' => 'failure', 'message'=>"".$e->getMessage()."");
+   	  return array('status' => 'failure', 'message'=>"".$e->getMessage()." ". __LINE__);
    }
    
    return array('status'=> 'success','entry_id' => "".$last_entry_id."");     
@@ -308,27 +316,10 @@ function deletePost($entryid){
 	return array('status' => 'success','message' => 'Post deleted');
 }
  
-function updatePost($entryid,$body,$tags){
-	
-	if (!isset($_POST[$entryid]) ){
-		throw new Exception("Post id not set");
-	}
-	
-	if (empty($_POST[$entryid])){
-		throw new Exception("Post id is empty");
-	}
-	
-	if (!isset($_POST[$body]) ){
-		throw new Exception("Post body not set");
-	}
-	 
-	if (empty($_POST[$body])){
-		throw new Exception("Post body is empty");
-	}
-    
+function updatePost($entryid,$body,$tags=''){
 	$postManager = new PostManager();
 	try {
-		$postManager->updatePost(trim($_POST[$entryid]));
+		$postManager->updatePost(trim($entryid),trim($body));
 	} catch(Exception $e){
 		return array('status' => 'failure','message'=> "".$e->getMessage()."" );
 	}

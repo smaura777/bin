@@ -28,7 +28,7 @@ function create($display,$description='',$entryid= ''){
  	$tablemodel->add($rowmodel);
  } catch(Exception $e){
  	// Ignore dup key errors
- 	echo "ERR Code  " . $e->getCode();
+ 	//echo "ERR Code  " . $e->getCode();
  	if ($e->getCode() != 1062){
  	  die("<p> ". $e->getMessage() . "</p>");
  	}
@@ -48,7 +48,7 @@ function create($display,$description='',$entryid= ''){
    $tablemodel->add($tagRowModel);  	
  } catch (Exception $e){
  	// Ignore dup key errors
- 	echo "ERR Code 2 " . $e->getCode();
+ 	//echo "ERR Code 2 " . $e->getCode();
  	if ($e->getCode() != 1062){
  	  die("{$e->getMessage()}");
  	}
@@ -56,21 +56,23 @@ function create($display,$description='',$entryid= ''){
  
  
  // Adding tag to account mapping
+ $tablemodel2 = new TableModel();
+ $tablemodel2->tableName = "account_tag_mapping";
  
- $tablemodel->tableName = "account_tag_mapping";
  $aRowModel = new RowModel();
  $aRowModel->set('tagid',"'".$custom_id."'");
  $aRowModel->set("uid","'" . $_SESSION['user_object']->id . "'");
  $aRowModel->set('created_on',"".time()."");
  
  try {
-   $tablemodel->add($aRowModel);  	
+   $tablemodel2->add($aRowModel);  	
  } catch (Exception $e){
  	// Ignore dup key errors
- 	echo "ERR Code 2 " . $e->getCode();
+ 	//echo "ERR Code 3 " . $e->getCode();
  	if ($e->getCode() != 1062){
  	  die("{$e->getMessage()}");
  	}
+ 	
  }
  
  

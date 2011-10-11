@@ -10,7 +10,7 @@ class TableModel {
 	function __construct(){
 		$this->_connection = DatabaseConnection::Connect();
 		if ($this->_connection->error){
-			die("Connect error" . $this->_connection->error);
+			throw new Exception("" . $this->_connection->error ."",$this->_connection->errno);
 		}
 	}
 	
@@ -34,7 +34,7 @@ class TableModel {
 	  
 	  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
-	     throw new Exception("Insert error " . $this->_connection->error,$this->_connection->errno);
+	     throw new Exception("" . $this->_connection->error ."",$this->_connection->errno);
 	  }      
 	}
 	
@@ -46,7 +46,7 @@ class TableModel {
 	  $this->queryOp = "DELETE FROM {$this->tableName} WHERE {$row->toConstraints()}";
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
-	  	throw new Exception("Select error ");
+	  	  throw new Exception("" . $this->_connection->error ."",$this->_connection->errno);
 	  }
 	}
 	
@@ -60,7 +60,7 @@ class TableModel {
 	  $result =  $this->_connection->query($this->queryOp);
 	  
 	  if ($this->_connection->error){
-	  	throw new Exception("update error  and " + $this->queryOp +"");
+	  	  throw new Exception("" . $this->_connection->error ." : ".$this->queryOp." " ,$this->_connection->errno);
 	  }	   	
 	}
 	
@@ -86,7 +86,7 @@ class TableModel {
 	  //echo "<p>".$this->queryOp."</p>";
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
-	  	throw new Exception("Select error ");
+	  	  throw new Exception("" . $this->_connection->error ."",$this->_connection->errno);
 	  }
 	
 	  $this->resultCount = $result->num_rows;
@@ -107,7 +107,7 @@ class TableModel {
 	  
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
-		throw new Exception("Select count error ");
+		  throw new Exception("" . $this->_connection->error ."",$this->_connection->errno);
 	  }
       
 	  $resultRow = $result->fetch_assoc();
