@@ -24,7 +24,10 @@ session_start_wrap();
    <script type="text/javascript" src="js/test.js"></script>
    
       <script type="text/javascript" src="js/json2.js"></script>
-       <script type="text/javascript" src="js/action.js"></script>
+      <script type="text/javascript" src="js/form.js"></script>
+      <script type="text/javascript" src="js/menu.js"></script>
+      <script type="text/javascript" src="js/page.js"></script>
+      <script type="text/javascript" src="js/action.js"></script>
    <!--
    <script type="text/javascript" src=""></script>
    --> 
@@ -80,7 +83,7 @@ else {
     <div class="frm_wrapper">
       <form id="createnote_frm" name="create_note" enctype="application/x-www-form-urlencoded" method="POST" action="notes/?q=add">
       <div class="frm_input">
-       <input type="text" size="80" name="docname" value="">
+       <input type="text" id="note_docname"  size="80" name="docname" value="">
        <input type="hidden"  name="action" value="">
         <input type="hidden"  name="entid" value="">
       </div>
@@ -106,7 +109,7 @@ else {
     </div>
     <!-- frm wrapper end -->
     <div class="frm_button">
-      <button  id="postclear_bt" class="left_b">clear</button> <button id="postsave_bt" class="right_b">save</button>
+      <button  id="postclear_bt" class="left_b">clear</button> <button id="postsave_bt" data-actiontype='new' class="right_b">save</button>
     </div>  
   </div>
   <!-- dialog end -->

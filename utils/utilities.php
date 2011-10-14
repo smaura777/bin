@@ -324,6 +324,7 @@ function updatePost($entryid,$body,$tags=''){
 		return array('status' => 'failure','message'=> "".$e->getMessage()."" );
 	}
 	
+    return array('status' => 'success','message'=> "Post updated");
 	
 } 
 
