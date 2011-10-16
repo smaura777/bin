@@ -75,14 +75,14 @@ class TableModel {
 	  
 	  $this->queryOp = "SELECT  {$row->toColumnList()} FROM {$this->tableName}  {$row->toConstraints()}";
 	  
+	  if (!empty($options)){
+	  	$this->queryOp .= " {$options} ";
+	  }
 	  
 	  if ($limit > 0){
 	  	$this->queryOp .= " LIMIT {$limit} ";
 	  }
 	  
-	  if (!empty($options)){
-	  	$this->queryOp .= " {$options} ";
-	  }
 	  //echo "<p>".$this->queryOp."</p>";
 	  $result =  $this->_connection->query($this->queryOp);
 	  if ($this->_connection->error){
@@ -95,6 +95,34 @@ class TableModel {
 	  return $this->resultSet;
 	}
 	
+	function fetchCustom($query,$limit=0,$options=""){
+		if (!is_int($limit)){
+			throw new Exception("Limit is not an integer");
+		}
+		
+		$this->queryOp = $query;
+		 
+		
+		 
+		if (!empty($options)){
+			$this->queryOp .= " {$options} ";
+		}
+		
+		if ($limit > 0){
+			$this->queryOp .= " LIMIT {$limit} ";
+		}
+		
+		//echo "<p>".$this->queryOp."</p>";
+		$result =  $this->_connection->query($this->queryOp);
+		if ($this->_connection->error){
+			throw new Exception("" . $this->_connection->error ."",$this->_connection->errno);
+		}
+		
+		$this->resultCount = $result->num_rows;
+		$this->saveResultSet($result);
+		
+		return $this->resultSet;
+	}
 	
 	function fetchCount(RowModel $row){
 	  if (empty($this->tableName)){

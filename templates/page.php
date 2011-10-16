@@ -28,11 +28,6 @@
           <li>All Notes</li>
           <li>All tags</li>
           <li>Recent</li>
-          <li>Location</li>
-          <li>Shared</li>
-          <li>Comments</li>
-          <li>Activity</li>
-          <li>Groups</li>   
          </ul>
          
          <ul>
@@ -55,8 +50,7 @@
              <div class="top_menu">
                <ul>
                  <li class="add_entry">Add Entry</li>
-                 <li class="add_tags">Add tags</li>
-                 <li>Delete</li>
+                 
                </ul>
              </div>
            </div>

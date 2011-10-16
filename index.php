@@ -72,10 +72,12 @@ else {
       <div id="dialog_menu">
         <ul>
           <li class="selected"><div class="menu_item">Note</div></li>
+          <!-- 
           <li><div class="menu_item">Tag</div></li>
           <li><div class="menu_item">Group</div></li>
           <li><div class="menu_item">People</div></li>
           <li><div class="menu_item">Sharing</div></li>
+          -->
         </ul>  
       </div>  
     </div>
@@ -83,26 +85,26 @@ else {
     <div class="frm_wrapper">
       <form id="createnote_frm" name="create_note" enctype="application/x-www-form-urlencoded" method="POST" action="notes/?q=add">
       <div class="frm_input">
-       <input type="text" id="note_docname"  size="80" name="docname" value="">
+       <input type="text" id="note_docname"  name="docname" value="" placeholder="Enter title here">
        <input type="hidden"  name="action" value="">
         <input type="hidden"  name="entid" value="">
       </div>
       <div class="frm_input">
-        <textarea class="note_body" id="note_body" rows='10' cols='80' name="note_body"  placeholder="Enter notes here"  required autofocus></textarea>
+        <textarea class="note_body" id="note_body" rows='11' cols='80' name="note_body"  placeholder="Enter notes here"  required autofocus></textarea>
       </div>
       <div class="frm_input frm_textarea">  
-        <textarea class="note_tags" rows='2' cols='80' id="note_tags" name="note_tags" value="asksak saks"  placeholder="Enter tags here"></textarea>
+        <textarea class="note_tags" rows='4' cols='80' id="note_tags" name="note_tags" value="asksak saks"  placeholder="Enter tags here"></textarea>
       </div>  
       
       <div class="frm_input frm_select">  
-        <div><label>Groups</label></div>
+      
         <select>
-          <option value ="volvo">Volvo</option>
-          <option value ="saab">Saab</option>
-          <option value ="opel">Opel</option>
-          <option value ="audi">Audi</option>
+          <option value ="">Visibility</option>
+          <option value ="saab">Public</option>
+          <option value ="opel">Private</option>
+          <option value ="audi">Friends</option>
         </select>
-        <span>Create a group</span>
+        
       </div> 
       
       </form>

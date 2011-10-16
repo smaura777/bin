@@ -133,6 +133,7 @@ function  getNote($entry_id){
         	}
         	
         	$entries[] = array('docid' => "".$last_entry[0]->get('docid')->value."",
+        	        'docdisplay' => "".$last_entry[0]->get('docdisplay')->value."",
 	                'entryid' => "".$last_entry[0]->get('entryid')->value."",
 	                'entrybody' => "".$last_entry[0]->get('entrybody')->value."",
 	                'created_on' => "".date($last_entry[0]->get('created_on')->value)."");
@@ -150,6 +151,7 @@ function  getNote($entry_id){
 
 	    foreach ($last_entry as $item){
 	    	$entries[] =  array('docid' => "".$item->get('docid')->value."",
+	    	'docdisplay' => "".$item->get('docdisplay')->value."",
 	           'entryid' => "".$item->get('entryid')->value."",
 	           'entrybody' => "".substr_replace(trim($item->get('entrybody')->value),'...',160)."",
 	           'created_on' => "".date('r',$item->get('created_on')->value)."");

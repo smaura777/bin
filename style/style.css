@@ -12,6 +12,8 @@ body {
  padding: 0;
  margin:0;
  border-top: 30px solid #87A96B;
+ font-family: Georgia,Helvetica;
+ font-size: 14px;
 }
 
 /**
@@ -30,6 +32,23 @@ ul {
   margin-left: 10px;
 }
 
+#leftmenu_frame ul li {
+  border: 1px solid #F0F2F4;
+  padding-top: 12px;
+  padding-left: 16px;
+  padding-bottom: 12px;
+  margin-bottom: 12px;	
+  font-size: 16px;
+  font-weight: normal; 
+} 
+ 
+#leftmenu_frame ul li:hover {
+  background-color:#87A96B;
+  color: #fff;
+  font-weight: bold;	
+}
+
+ 
  
  #masthead_wrap ul {
   padding-bottom: 5px;
@@ -48,7 +67,7 @@ ul {
 
 
 #page_wrap {
-   width: 980px;
+   width: 940px;
    margin-left:auto;
    margin-right:auto;
    margin-top:20px;
@@ -60,14 +79,15 @@ ul {
 
 #content_frame {
   overflow: auto;
-  background-color: #dedede;
+  background-color: ;
   
 }
 
 #leftmenu_frame {
-  width: 290px;
+  width: 240px;
   border-right: 0px solid blue;
   float: left;
+  outline: 0px solid #000;
 }
 
 
@@ -89,3 +109,29 @@ ul {
   width: 500px;
    float: left;
 }
+
+#page_wrap ul.note_actions li {
+	display: inline;
+	margin-right: 10px;
+	color: #dedede;
+}
+
+#page_wrap ul.note_actions li:hover {
+  color: gray;
+  cursor:pointer;	
+}
+
+#page_wrap .docname {
+  font-weight: bold;
+  font-style: italic;	
+}
+
+#page_wrap .entry-note {
+	border: 1px solid gray;
+	padding: 2px 1px 2px 8px;
+}
+
+#page_wrap #innermaster_wrap_content .odd {
+	background-color: #F1F2F4;
+}
+

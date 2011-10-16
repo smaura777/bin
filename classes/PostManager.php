@@ -86,8 +86,14 @@ class PostManager {
    	$tablemodel = new TableModel();
    	$tablemodel->tableName = "entry";
    	
+   	$custom_query = "SELECT dc.docid,dc.docdisplay,dc.docname,ent.entryid,ent.
+   	   	entrybody,ent.uid,ent.created_on from entry ent 
+   	   	inner join documents dc on dc.docid = ent.docid and ent.visibility ='visible' and ent.uid ='".$user_object->id."'  and ent.entryid ='".$entryid."' ";
+   	
+   	
    	try {
-   		$result = $tablemodel->fetch($rowmodel);
+   		//$result = $tablemodel->fetch($rowmodel);
+   		$result = $tablemodel->fetchCustom($custom_query);
    	} catch(Exception $e){
    		throw $e;
    	}
@@ -115,10 +121,16 @@ class PostManager {
    	$rowmodel->setConstraint("visibility","'visible'");
    
    	$tablemodel = new TableModel();
+   	
+   	$custom_query = "SELECT dc.docid,dc.docdisplay,dc.docname,ent.entryid,ent.
+   	entrybody,ent.uid,ent.created_on from entry ent 
+   	inner join documents dc on dc.docid = ent.docid and ent.visibility ='visible' and ent.uid ='".$user_object->id."' ";
+   	
    	$tablemodel->tableName = "entry";
    
    	try {
-   		$result = $tablemodel->fetch($rowmodel,$limit);
+   		//$result = $tablemodel->fetch($rowmodel,$limit);
+   		$result = $tablemodel->fetchCustom($custom_query,0,"ORDER BY ent.created_on desc ");
    	} catch(Exception $e){
    		throw $e;
    	}
