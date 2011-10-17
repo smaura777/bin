@@ -11,9 +11,12 @@ div {
 body {
  padding: 0;
  margin:0;
- border-top: 30px solid #87A96B;
+/*** border-top: 30px solid #87A96B; **/
  font-family: Georgia,Helvetica;
  font-size: 14px;
+ outline: 1px solid red;
+ height: 100px;
+ 
 }
 
 /**
@@ -84,7 +87,9 @@ ul {
 }
 
 #leftmenu_frame {
-  width: 240px;
+  width: 220px;
+  margin-left:2px;
+  position:fixed;
   border-right: 0px solid blue;
   float: left;
   outline: 0px solid #000;
