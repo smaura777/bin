@@ -1,6 +1,6 @@
 
 <div id="outer_wrap">
-
+ 
 <!-- page wrap start -->
   <div id="page_wrap">
     
@@ -35,7 +35,7 @@
              </div>
              <div class="top_menu">
                <ul>
-                 <li class="add_entry">Add Entry</li>
+                 <li class="add_entry">New</li>
                  
                </ul>
              </div>
