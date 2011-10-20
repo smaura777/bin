@@ -124,7 +124,7 @@ class PostManager {
    	$tablemodel = new TableModel();
    	
    	$custom_query = "SELECT dc.docid,dc.docdisplay,dc.docname,ent.entryid,ent.
-   	entrybody,ent.uid,ent.created_on,group_concat(tg.tagname) as tag_cloud from entry ent 
+   	entrybody,ent.uid,ent.created_on,group_concat(tg.tagname SEPARATOR ' ') as tag_cloud from entry ent 
    	inner join documents dc on dc.docid = ent.docid  inner join entry_tag_mapping tm on tm.entryid = ent.entryid inner join tags tg on tg.tagid = tm.tagid 
     and ent.visibility ='visible' and ent.uid ='".$user_object->id."'  group by ent.entryid ";
    	

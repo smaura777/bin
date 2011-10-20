@@ -93,7 +93,7 @@ else {
         <textarea class="note_body" id="note_body" rows='11' cols='80' name="note_body"  placeholder="Enter notes here"  required autofocus></textarea>
       </div>
       <div class="frm_input frm_textarea">  
-        <textarea class="note_tags" rows='4' cols='80' id="note_tags" name="note_tags" value="asksak saks"  placeholder="Enter tags here"></textarea>
+        <textarea class="note_tags" rows='4' cols='80' id="note_tags" name="note_tags" value=""  placeholder="Enter tags here"></textarea>
       </div>  
       
       <div class="frm_input frm_select">  

@@ -105,9 +105,6 @@ function procesPost($doc_name,$body,$tags) {
      	  	}
      	   
      	  }
-     	//} catch (Exception $e){
-     	  //return  array('status' => 'failure','message'=>"".$e->getMessage()." code =  " . $e->getCode() . "  "   . __LINE__ );	
-     	//}
      	
      }
      
@@ -327,6 +324,32 @@ function updatePost($entryid,$body,$tags=''){
 	} catch(Exception $e){
 		return array('status' => 'failure','message'=> "".$e->getMessage()."" );
 	}
+	
+	if ($tags != ''){
+		$tag_val = explode(",",strtolower(trim($tags)));
+       	// Array dup removal
+        $tag_filter = array();	
+       	foreach ($tag_val as $element){
+       	  $tag_filter['"'. $element .'"'] = $element;	
+       	}
+       	
+       	$tag_val = array_values($tag_filter);
+		// Get ID of the updated entry
+		$recentEntryID =  $postManager->recentEntryID();
+		
+	    $tagManager = new TagManager();
+     	foreach ($tag_val as $element) {	
+     	  try {
+     	      $tagManager->create($element,'',$recentEntryID);
+     	  	} catch (Exception $e){
+     	  	  if ($e->getCode()  != 1062 ){
+     	  	  	   return  array('status' => 'failure','message'=>"".$e->getMessage()." code =  " . $e->getCode() . "  "   . __LINE__ );	
+     	  	  }	
+     	  	}   
+     	}
+		
+	}
+	
 	
     return array('status' => 'success','message'=> "Post updated");
 	

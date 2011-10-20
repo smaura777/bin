@@ -65,13 +65,14 @@
 	 param_obj.id = entryid;
 	
 	 $.get('notes/?q=get',param_obj,function(data){
-		alert(data);
+		//alert(data);
 		 var json_obj = JSON.parse(data);
 		 //alert(json_obj.entries[0].entryid);
 		 document.create_note.note_body.value = "";
 		 document.create_note.note_body.value = ""+json_obj.entries[0].entrybody +"";
 		 document.create_note.entid.value = ''+json_obj.entries[0].entryid +'';
 		 document.create_note.action.value = "updatepost";
+		 document.create_note.note_tags.value = '' + json_obj.entries[0].tagcloud + '';
 		 Menu.toggleModal('modal_wrapper','update');
 		
 		 //alert($('#node_body').val("" + json_obj.entries[0].entrybody + ""));

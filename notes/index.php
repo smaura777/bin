@@ -23,7 +23,8 @@ switch ($_SERVER['REQUEST_METHOD']){
 		        if ( isset($_POST['entryid']) && ($_POST['entryid'] !=  '') && isset($_POST['note_body']) && ($_POST['note_body'] != '') ){
 					$filter = new Filter();
 					
-		        	$r_val = updatePost(Filter::StripAndEscape($_POST['entryid']),Filter::StripAndEscape($_POST['note_body']));
+		        	$r_val = updatePost(Filter::StripAndEscape($_POST['entryid']),
+		        	         Filter::StripAndEscape($_POST['note_body']));
 				    echo json_encode($r_val);
 				}
 				else {

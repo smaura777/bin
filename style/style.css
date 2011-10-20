@@ -173,12 +173,16 @@ ul {
 	background-color: #F1F2F4;
 }
 
+#page_wrap .entrybody {
+  padding-bottom: 4px;
+  padding-top: 4px;
+}
+
 #page_wrap .tag_cloud {
   padding: 8px 8px 8px 8px;
   color: #60AFFE;
   font-weight: bold;
   font-size: 12px;
   width: 400px;
-  text-wrap: normal;
-  border: 1px solid red;	
+  text-wrap: normal;	
 }
