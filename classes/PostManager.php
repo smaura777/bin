@@ -87,8 +87,9 @@ class PostManager {
    	$tablemodel->tableName = "entry";
    	
    	$custom_query = "SELECT dc.docid,dc.docdisplay,dc.docname,ent.entryid,ent.
-   	   	entrybody,ent.uid,ent.created_on from entry ent 
-   	   	inner join documents dc on dc.docid = ent.docid and ent.visibility ='visible' and ent.uid ='".$user_object->id."'  and ent.entryid ='".$entryid."' ";
+   	   	entrybody,ent.uid,ent.created_on,group_concat(tg.tagname) as tag_cloud from entry ent 
+   	   	inner join documents dc on dc.docid = ent.docid   inner join entry_tag_mapping tm on tm.entryid = ent.entryid inner join tags tg on tg.tagid = tm.tagid
+   	    and ent.visibility ='visible' and ent.uid ='".$user_object->id."'  and ent.entryid ='".$entryid."'  group by ent.entryid  limit 1 ";
    	
    	
    	try {
@@ -101,7 +102,7 @@ class PostManager {
    	return $result;
    }
   
-   public function getAllNotes($limit = 50){
+   public function getAllNotes($start=0,$limit = 50){
    	
    	if (!isset($_SESSION['user_object'])){
    		throw new Exception("User is not logged in");
@@ -123,14 +124,15 @@ class PostManager {
    	$tablemodel = new TableModel();
    	
    	$custom_query = "SELECT dc.docid,dc.docdisplay,dc.docname,ent.entryid,ent.
-   	entrybody,ent.uid,ent.created_on from entry ent 
-   	inner join documents dc on dc.docid = ent.docid and ent.visibility ='visible' and ent.uid ='".$user_object->id."' ";
+   	entrybody,ent.uid,ent.created_on,group_concat(tg.tagname) as tag_cloud from entry ent 
+   	inner join documents dc on dc.docid = ent.docid  inner join entry_tag_mapping tm on tm.entryid = ent.entryid inner join tags tg on tg.tagid = tm.tagid 
+    and ent.visibility ='visible' and ent.uid ='".$user_object->id."'  group by ent.entryid ";
    	
    	$tablemodel->tableName = "entry";
    
    	try {
    		//$result = $tablemodel->fetch($rowmodel,$limit);
-   		$result = $tablemodel->fetchCustom($custom_query,0,"ORDER BY ent.created_on desc ");
+   		$result = $tablemodel->fetchCustom($custom_query,0," ORDER BY ent.created_on desc limit {$start},{$limit} ");  // ORDER BY ent.created_on desc 
    	} catch(Exception $e){
    		throw $e;
    	}

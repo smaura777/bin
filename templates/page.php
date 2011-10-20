@@ -10,6 +10,7 @@
     <div id="content_frame">
       <!-- leftmenu frame start -->
       <div id="leftmenu_frame">
+        <div id="site_title"> <span class="title">Shelf</span></div>
         <ul>
           <li>All Notes</li>
           <li>All tags</li>

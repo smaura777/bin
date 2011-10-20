@@ -14,17 +14,16 @@ body {
 /*** border-top: 30px solid #87A96B; **/
  font-family: Georgia,Helvetica;
  font-size: 14px;
- outline: 1px solid red;
 }
 
 #masthead_wrap {
-  border: 1px solid #dedede;	
+  border: 1px solid gray;	
   outline: 0px solid red;
   width: 500px;  
-  height: 35px;
+  height: 40px;
   margin-top: -20px;
   position:fixed;
-  background-color: #fff;
+  background-color: #dedede;
 }
 
 /**
@@ -89,7 +88,7 @@ ul {
 
 
 #page_wrap {
-   width: 790px;
+   width: 740px;
    margin-left:auto;
    margin-right:auto;
    margin-bottom:20px;
@@ -104,12 +103,30 @@ ul {
 #leftmenu_frame {
   width: 220px;
   margin-left:2px;
+  padding-top: 2px;
   position:fixed;
   border-right: 0px solid blue;
   float: left;
   outline: 0px solid #000;
 }
 
+#leftmenu_frame .title {
+  margin-left: 35px;
+  font-weight: bold;
+  font-size: 28px;
+  font-family: Georgia,Helvetica;
+  font-style: italic;	
+  color: #fff;
+}
+
+#site_title {
+	outline: 1px solid gray;
+	height: 36px;
+	background-color: #dedede;
+	padding-top: 4px;	
+	
+	
+}
 
 #mastercontent_wrap {
   width: 500px;
@@ -122,7 +139,7 @@ ul {
 
 
 #innermaster_wrap_content {
-  margin:20px 20px 20px 20px; 
+  margin:20px 0px 20px 0px; 
   padding-top: 35px; 
 }
 
@@ -156,3 +173,12 @@ ul {
 	background-color: #F1F2F4;
 }
 
+#page_wrap .tag_cloud {
+  padding: 8px 8px 8px 8px;
+  color: #60AFFE;
+  font-weight: bold;
+  font-size: 12px;
+  width: 400px;
+  text-wrap: normal;
+  border: 1px solid red;	
+}
