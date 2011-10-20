@@ -19,7 +19,7 @@ body {
 #masthead_wrap {
   border: 1px solid gray;	
   outline: 0px solid red;
-  width: 500px;  
+  width: 300px;  
   height: 40px;
   margin-top: -20px;
   position:fixed;
@@ -88,11 +88,11 @@ ul {
 
 
 #page_wrap {
-   width: 740px;
-   margin-left:auto;
+   width: 960px;
+   margin-left:0;
    margin-right:auto;
    margin-bottom:20px;
-   outline: 0px solid gray;
+   outline: 1px solid gray;
    
 }
 
@@ -101,13 +101,13 @@ ul {
 }
 
 #leftmenu_frame {
-  width: 220px;
+  width: 140px;
   margin-left:2px;
   padding-top: 2px;
   position:fixed;
   border-right: 0px solid blue;
   float: left;
-  outline: 0px solid #000;
+  outline: 1px solid #000;
 }
 
 #leftmenu_frame .title {
@@ -129,7 +129,7 @@ ul {
 }
 
 #mastercontent_wrap {
-  width: 500px;
+  width: 300px;
   background-color: #fff;
   float: right;
   overflow: auto;
@@ -183,6 +183,6 @@ ul {
   color: #60AFFE;
   font-weight: bold;
   font-size: 12px;
-  width: 400px;
+  
   text-wrap: normal;	
 }
