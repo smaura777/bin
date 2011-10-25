@@ -74,6 +74,16 @@
        float: right;
      }
      
+     #right-sidebar {
+       margin-top: 10px;
+     }
+     
+     #bucket {
+       margin-right: 20px;
+       border: 0px solid red;	
+       width: 600px;
+       margin-top: 10px; 
+     }
      
      #bucket .item {
        padding: 8px 8px 8px 4px;	
@@ -115,6 +125,68 @@
      }
      
      
+     
+     
+     
+     #right-sidebar {
+       width: 300px;
+       float: right;
+       outline: 1px solid gray;
+       padding: 2px 4px 4px 4px;
+     }
+     
+     
+     .book-meta {
+       color: gray;
+       font-size: 11px;
+       font-style: italic;
+       padding-bottom: 4px;
+     }
+     
+     .book-action button {
+       border: 1px solid #000;
+     }
+     
+     .book-action ul {
+       border: 0px solid #000;
+     }
+     
+     .book-action-list li{
+       border: 0px solid #000;
+       margin-right: 2px;
+     }
+     
+     li.recommend-rating span{
+       font-style: italic;
+       font-size: 11px;
+       color:light-gray;
+       padding-right: 2px;
+     }
+     
+      li.recommend-rating span.selected-rating {
+        font-size: 18px;
+        color: orange;
+      }
+     
+     
+     
+     
+     .book-comment {
+       padding-top: 2px;
+       padding-bottom: 2px;
+       border: 0px solid red;
+       width: 400px;
+     }
+     
+     .book-comment-submit {
+       text-align: right;
+     }
+     
+     .book-comment-submit input {
+        border: 1px solid #000;
+        background-color: #dedede;	
+     }
+     
   </style>
 </head>
 <body>
@@ -142,8 +214,7 @@
               <li><a href="/">MustRead</a></li>
               <li><a href="/excerp">Excerpt</a></li>
               <li><a href="/comments">Comments</a></li>
-              <li><a href="/questions">Questions</a></li>
-              <li><a href="/add">Add</a></li>
+              <li><a href="/add">Questions</a></li>
             </ul>
           </div>
           <div id="menu-container-search">
@@ -165,153 +236,164 @@
     <div id="bucket-frm-container">
     </div> 
     
+    <div id="right-sidebar">
+       <div id="block-a">
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+       </div> 
+       <div id="block-b">
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+       </div> 
+       <div id="block-c">
+          <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div>
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div> 
+         <div class="block-item">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec interdum, lorem sit amet uscipit sit amet luctus augue.</div> 
+       </div> 
+    </div>
+    
     <div id="bucket" class="mustread">
       <div id="item-set" >
+       
+       <!-- ********************************************************************************************  --> 
         
-        <div class="item">
-          <div class="rating">
-            <table>
-              <tr>
-                <td><div class="great">Great</div></td>
-                 <td><div class="votes">89%</div></td>
-              </tr>  
-              <tr>
-                <td><div class="ok">Ok</div></td>
-                 <td><div class="votes">10%</div></td>
-              </tr>
-              <tr>
-                <td><div class="bad">Bad</div></td>
-                 <td><div class="votes">1%</div></td>
-              </tr>
-               <tr>
-                <td colspan="2"><div class="total" align="right">4550</div></td>
-              </tr>
-            </table>
+        <div class="item">  
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>    
+          <div class="book-meta">
+           <ul class="book-meta-items">
+             <li><span class="meta-key">Category </span>:<span class="meta-value"> Literary fiction</span></li>
+             <li><span class="meta-key">Author </span>:<span class="meta-value"> Paul Revere</span></li>
+             <li><span class="meta-key">Publisher </span>:<span class="meta-value"> Knopt</span></li>
+             <li><span class="meta-key">Publication date </span>:<span class="meta-value"> 11.11.2011</span></li>
+           </ul>
           </div>
-          
-          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
-          <div class="body">
-             Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
-          </div>
-          <div class="author">Paul Madou</div>
-          <div class="tags">
-                <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
-          </div>
-          <div class="time">
-             2010 09 11 2:00:00 pm
-          </div>
-        </div>
          
+          <div class="book-comment">
+          <form> 
+            <div class="book-comment-box"> <textarea row="1" cols="40" placeholder="Add a comment" style="height: 15px; width: 390px;"></textarea> </div>
+            <div class="book-comment-submit">
+              <input type="reset" value="cancel"> 
+              <input type="submit" value="publish">
+            </div>
+          </form>
+          </div>
+         
+          <div class="book-action">
+            <ul class="book-action-list">
+              <li><button>recommend this</button></li>
+              <li class="recommend-rating"><span>551</span></li>
+              <li><button>add to my list</button></li>
+              <li class="recommend-rating"><span>991</span></li>
+            </ul>
+          </div>    
+        </div>
+        
         <!-- *********************************************************************************** --> 
         
-        <div class="item">
-          <div class="rating">
-            <table>
-              <tr>
-                <td><div class="great">Great</div></td>
-                 <td><div class="votes">89%</div></td>
-              </tr>  
-              <tr>
-                <td><div class="ok">Ok</div></td>
-                 <td><div class="votes">10%</div></td>
-              </tr>
-              <tr>
-                <td><div class="bad">Bad</div></td>
-                 <td><div class="votes">1%</div></td>
-              </tr>
-               <tr>
-                <td colspan="2"><div class="total" align="right">4550</div></td>
-              </tr>
-            </table>
+        <div class="item">  
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>    
+          <div class="book-meta">
+           <ul class="book-meta-items">
+             <li><span class="meta-key">Category </span>:<span class="meta-value"> Literary fiction</span></li>
+             <li><span class="meta-key">Author </span>:<span class="meta-value"> Paul Revere</span></li>
+             <li><span class="meta-key">Publisher </span>:<span class="meta-value"> Knopt</span></li>
+             <li><span class="meta-key">Publication date </span>:<span class="meta-value"> 11.11.2011</span></li>
+           </ul>
           </div>
-          
-          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
-          <div class="body">
-             Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
+         
+          <div class="book-comment">
+          <form> 
+            <div class="book-comment-box"> <textarea row="1" cols="40" placeholder="Add a comment" style="height: 15px; width: 390px;"></textarea> </div>
+            <div class="book-comment-submit">
+              <input type="reset" value="cancel"> 
+              <input type="submit" value="publish">
+            </div>
+          </form>
           </div>
-          <div class="author">Paul Madou</div>
-          <div class="tags">
-                <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
-          </div>
-          <div class="time">
-             2010 09 11 2:00:00 pm
-          </div>
+         
+          <div class="book-action">
+            <ul class="book-action-list">
+              <li><button>recommend this</button></li>
+              <li class="recommend-rating"><span>551</span></li>
+              <li><button>add to my list</button></li>
+              <li class="recommend-rating"><span>991</span></li>
+            </ul>
+          </div>    
         </div>
         
         
         <!-- ********************************************************************************** -->
         
-       <div class="item">
-          <div class="rating">
-            <table>
-              <tr>
-                <td><div class="great">Great</div></td>
-                 <td><div class="votes">89%</div></td>
-              </tr>  
-              <tr>
-                <td><div class="ok">Ok</div></td>
-                 <td><div class="votes">10%</div></td>
-              </tr>
-              <tr>
-                <td><div class="bad">Bad</div></td>
-                 <td><div class="votes">1%</div></td>
-              </tr>
-               <tr>
-                <td colspan="2"><div class="total" align="right">4550</div></td>
-              </tr>
-            </table>
+        <div class="item">  
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>    
+          <div class="book-meta">
+           <ul class="book-meta-items">
+             <li><span class="meta-key">Category </span>:<span class="meta-value"> Literary fiction</span></li>
+             <li><span class="meta-key">Author </span>:<span class="meta-value"> Paul Revere</span></li>
+             <li><span class="meta-key">Publisher </span>:<span class="meta-value"> Knopt</span></li>
+             <li><span class="meta-key">Publication date </span>:<span class="meta-value"> 11.11.2011</span></li>
+           </ul>
           </div>
-          
-          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
-          <div class="body">
-             Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
-          </div>
-          <div class="author">Paul Madou</div>
-          <div class="tags">
-                <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
-          </div>
-          <div class="time">
-             2010 09 11 2:00:00 pm
-          </div>
-        </div>
          
+          <div class="book-comment">
+          <form> 
+            <div class="book-comment-box"> <textarea row="1" cols="40" placeholder="Add a comment" style="height: 15px; width: 390px;"></textarea> </div>
+            <div class="book-comment-submit">
+              <input type="reset" value="cancel"> 
+              <input type="submit" value="publish">
+            </div>
+          </form>
+          </div>
+         
+          <div class="book-action">
+            <ul class="book-action-list">
+              <li><button>recommend this</button></li>
+              <li class="recommend-rating"><span>551</span></li>
+              <li><button>add to my list</button></li>
+              <li class="recommend-rating"><span>991</span></li>
+            </ul>
+          </div>    
+        </div>
+        
+        
         <!-- *********************************************************************************** --> 
         
-     <div class="item">
-          <div class="rating">
-            <table>
-              <tr>
-                <td><div class="great">Great</div></td>
-                 <td><div class="votes">89%</div></td>
-              </tr>  
-              <tr>
-                <td><div class="ok">Ok</div></td>
-                 <td><div class="votes">10%</div></td>
-              </tr>
-              <tr>
-                <td><div class="bad">Bad</div></td>
-                 <td><div class="votes">1%</div></td>
-              </tr>
-               <tr>
-                <td colspan="2"><div class="total" align="right">4550</div></td>
-              </tr>
-            </table>
+        <div class="item">  
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>    
+          <div class="book-meta">
+           <ul class="book-meta-items">
+             <li><span class="meta-key">Category </span>:<span class="meta-value"> Literary fiction</span></li>
+             <li><span class="meta-key">Author </span>:<span class="meta-value"> Paul Revere</span></li>
+             <li><span class="meta-key">Publisher </span>:<span class="meta-value"> Knopt</span></li>
+             <li><span class="meta-key">Publication date </span>:<span class="meta-value"> 11.11.2011</span></li>
+           </ul>
           </div>
-          
-          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
-          <div class="body">
-             Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
+         
+          <div class="book-comment">
+          <form> 
+            <div class="book-comment-box"> <textarea row="1" cols="40" placeholder="Add a comment" style="height: 15px; width: 390px;"></textarea> </div>
+            <div class="book-comment-submit">
+              <input type="reset" value="cancel"> 
+              <input type="submit" value="publish">
+            </div>
+          </form>
           </div>
-          <div class="author">Paul Madou</div>
-          <div class="tags">
-                <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
-          </div>
-          <div class="time">
-             2010 09 11 2:00:00 pm
-          </div>
+         
+          <div class="book-action">
+            <ul class="book-action-list">
+              <li><button>recommend this</button></li>
+              <li class="recommend-rating"><span>551</span></li>
+              <li><button>add to my list</button></li>
+              <li class="recommend-rating"><span>991</span></li>
+            </ul>
+          </div>    
         </div>
         
         
+        
+        <!--  ******************************************************************************* --> 
          
       </div>  
     </div>
