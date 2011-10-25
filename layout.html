@@ -5,40 +5,115 @@
 	<title>Mockup v1.0</title>
 	<meta name="generator" content="BBEdit 10.1" />
   <style type="text/css">
+  
     div,body,ul,li {padding: 0;margin: 0;}
-    div {outline : 1px solid #000;}
+    div {outline : 0px solid #000;}
     ul {list-style-type: none;}
-    li {display: inline; margin-right: 20px;} 
+    li {display: inline; margin-right: 15px;} 
     
     body {font-size: 12px;font-family: Helvetica,Georgia;}
     
     #page {
-      width: 840px;
+      width: 960px;
       margin-top: 30px;
       margin-left: auto;
       margin-right: auto;
+      outline: 0px solid gray;
     }
     
     #container,#container-menu {outline: 0;}
     
-    #menu-container ul {
-      border: 2px solid #000;
-      padding: 8px;
+    #menu-container {
+      width: auto;
+      overflow: auto;
+      border: 0px solid red;
     }
     
-     #menu-container li.brain {
-       margin-right: 60px;
-     }
+    #menu-container ul.nav {
+      border: 0px solid #000;
+      padding: 8px;
+      font-size: 16px;
+      font-weight: bold;
+   
+    }
+    
+    ul.nav li a:link,
+    ul.nav li a:visited,
+    ul.nav li a:hover,
+    ul.nav li a:active {
+      text-decoration: none;
+         color: #fff;
+    }
+    
+    ul.nav li {
+     background-color: #505759;
+     margin-right: 5px;
+     padding: 6px;
+    }
+    
+   
      
      #container-menu {
        width: auto;
        overflow: auto;
+       padding-top: 2px;
+       background-color: #dedede;
+       height: 22px;
        padding-top: 2px;
      }
      
      #container-menu ul {
        float: right;
      }
+     
+     #menu-container-sections {
+      float: left;
+     }
+     
+     #menu-container-search {
+       float: right;
+     }
+     
+     
+     #bucket .item {
+       padding: 8px 8px 8px 4px;	
+       border-bottom: 1px dotted #000;
+       overflow: auto; 
+     }
+     
+     #bucket .title {
+       font-weight: bold;
+       font-size: 16px;
+     }
+     
+     #bucket .title a:link, 
+     #bucket .title a:visited, 
+     #bucket .title a:hover, 
+     #bucket .title a:active {
+       color: #07c;
+       text-decoration: none;
+     }
+     
+     #bucket .body {
+       font-size: 13px;
+     }
+     
+     #bucket .rating {
+       width: 90px;
+       height: 90px;
+       border: 2px solid black;
+       float: left;
+       margin-right: 8px;
+       font-size: 14px;
+       font-weight: bold;
+     }
+     
+     #bucket table {
+      outline: 0px solid red;
+      height: 100%;
+      width: 100%;
+     }
+     
      
   </style>
 </head>
@@ -62,12 +137,26 @@
         
         <!-- start -->
         <div id="menu-container"> 
-          <ul>
-            <li class="brain"><a href="#">BrainFreze</a></li>
-            <li><a href="#">Notes </a></li>
-            <li><a href="#">Add</a></li>
-            <li><a href="#">Tags</a></li>
-          </ul>
+          <div id="menu-container-sections">
+            <ul class="nav">
+              <li><a href="/">MustRead</a></li>
+              <li><a href="/excerp">Excerpt</a></li>
+              <li><a href="/comments">Comments</a></li>
+              <li><a href="/questions">Questions</a></li>
+              <li><a href="/add">Add</a></li>
+            </ul>
+          </div>
+          <div id="menu-container-search">
+            <form method="POST" action="/search/" name="search-frm">
+            <table>
+              <tr>
+                <td><input type="text" name="search" placeholder="Search here"  style="width:350px; height: 24px; padding: 2px; font-size:16px; border: 2px solid #000;"></td>
+                <td><input type="submit" value="search" style="height: 30px; background-color:#505759; color:#fff;  font-size: 16px; font-weight:bold; border: 0px solid #000;"></td>
+                </tr>
+            </table>
+            </form>
+          </div>
+          
         </div>
         <!-- End -->
       </div>
@@ -76,14 +165,35 @@
     <div id="bucket-frm-container">
     </div> 
     
-    <div id="bucket">
+    <div id="bucket" class="mustread">
       <div id="item-set" >
         
         <div class="item">
-          <div class="title">avoid rescaled data by a constant amount avoid rescaled data by a constant amount</div>
+          <div class="rating">
+            <table>
+              <tr>
+                <td><div class="great">Great</div></td>
+                 <td><div class="votes">89%</div></td>
+              </tr>  
+              <tr>
+                <td><div class="ok">Ok</div></td>
+                 <td><div class="votes">10%</div></td>
+              </tr>
+              <tr>
+                <td><div class="bad">Bad</div></td>
+                 <td><div class="votes">1%</div></td>
+              </tr>
+               <tr>
+                <td colspan="2"><div class="total" align="right">4550</div></td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
           <div class="body">
              Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
           </div>
+          <div class="author">Paul Madou</div>
           <div class="tags">
                 <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
           </div>
@@ -95,10 +205,31 @@
         <!-- *********************************************************************************** --> 
         
         <div class="item">
-          <div class="title">avoid rescaled data by a constant amount avoid rescaled data by a constant amount</div>
+          <div class="rating">
+            <table>
+              <tr>
+                <td><div class="great">Great</div></td>
+                 <td><div class="votes">89%</div></td>
+              </tr>  
+              <tr>
+                <td><div class="ok">Ok</div></td>
+                 <td><div class="votes">10%</div></td>
+              </tr>
+              <tr>
+                <td><div class="bad">Bad</div></td>
+                 <td><div class="votes">1%</div></td>
+              </tr>
+               <tr>
+                <td colspan="2"><div class="total" align="right">4550</div></td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
           <div class="body">
              Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
           </div>
+          <div class="author">Paul Madou</div>
           <div class="tags">
                 <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
           </div>
@@ -110,11 +241,32 @@
         
         <!-- ********************************************************************************** -->
         
-        <div class="item">
-          <div class="title">avoid rescaled data by a constant amount avoid rescaled data by a constant amount</div>
+       <div class="item">
+          <div class="rating">
+            <table>
+              <tr>
+                <td><div class="great">Great</div></td>
+                 <td><div class="votes">89%</div></td>
+              </tr>  
+              <tr>
+                <td><div class="ok">Ok</div></td>
+                 <td><div class="votes">10%</div></td>
+              </tr>
+              <tr>
+                <td><div class="bad">Bad</div></td>
+                 <td><div class="votes">1%</div></td>
+              </tr>
+               <tr>
+                <td colspan="2"><div class="total" align="right">4550</div></td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
           <div class="body">
              Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
           </div>
+          <div class="author">Paul Madou</div>
           <div class="tags">
                 <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
           </div>
@@ -125,11 +277,32 @@
          
         <!-- *********************************************************************************** --> 
         
-        <div class="item">
-          <div class="title">avoid rescaled data by a constant amount avoid rescaled data by a constant amount</div>
+     <div class="item">
+          <div class="rating">
+            <table>
+              <tr>
+                <td><div class="great">Great</div></td>
+                 <td><div class="votes">89%</div></td>
+              </tr>  
+              <tr>
+                <td><div class="ok">Ok</div></td>
+                 <td><div class="votes">10%</div></td>
+              </tr>
+              <tr>
+                <td><div class="bad">Bad</div></td>
+                 <td><div class="votes">1%</div></td>
+              </tr>
+               <tr>
+                <td colspan="2"><div class="total" align="right">4550</div></td>
+              </tr>
+            </table>
+          </div>
+          
+          <div class="title"><a href="/mustread/32434">Avoid rescaled data by a constant amount avoid rescaled data by a constant amount</a></div>
           <div class="body">
              Avoid rescaled data by a constant amount,avoid rescaled data by a constant amount, avoid rescaled data by a constant amount, v=avoid rescaled data by a constant amount
           </div>
+          <div class="author">Paul Madou</div>
           <div class="tags">
                 <span class="tag">avoid</span> <span class="tag">avoid</span> <span class="tag">avoid</span>
           </div>
